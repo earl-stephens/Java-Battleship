@@ -19,4 +19,10 @@ class ShipTest {
 		Assert.assertFalse(ship.sunk());
 	}
 
+	@Test
+	void testForHitMethod() {
+		ship.hit();
+		Assert.assertEquals(2, ship.health);
+		Assert.assertFalse(ship.sunk());
+	}
 }

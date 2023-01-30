@@ -17,4 +17,8 @@ public class Ship {
 		}
 		return false;
 	}
+	
+	public void hit() {
+		health--;
+	}
 }
