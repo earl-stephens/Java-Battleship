@@ -14,4 +14,8 @@ class CellTest {
 		Assert.assertNotNull(cell);
 	}
 
+	@Test
+	void testForNullShip() {
+		Assert.assertNull(cell.ship);
+	}
 }
