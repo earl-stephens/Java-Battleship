@@ -24,5 +24,13 @@ class ShipTest {
 		ship.hit();
 		Assert.assertEquals(2, ship.health);
 		Assert.assertFalse(ship.sunk());
+		
+		ship.hit();
+		Assert.assertEquals(1, ship.health);
+		Assert.assertFalse(ship.sunk());
+		
+		ship.hit();
+		Assert.assertEquals(0, ship.health);
+		Assert.assertTrue(ship.sunk());
 	}
 }
