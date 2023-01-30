@@ -13,5 +13,10 @@ class ShipTest {
 	void testForShipObject() {
 		Assert.assertNotNull(ship);
 	}
+	
+	@Test
+	void testIfSunk() {
+		Assert.assertFalse(ship.sunk());
+	}
 
 }
