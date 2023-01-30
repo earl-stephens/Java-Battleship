@@ -7,4 +7,9 @@ public class Cell {
 	public Cell(String coordinate) {
 		this.coordinate = coordinate;
 	}
+	
+	public boolean empty() {
+		if(ship == null) return true;
+		return false;
+	}
 }

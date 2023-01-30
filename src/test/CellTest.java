@@ -18,4 +18,9 @@ class CellTest {
 	void testForNullShip() {
 		Assert.assertNull(cell.ship);
 	}
+	
+	@Test
+	void testTheEmptyMethod() {
+		Assert.assertTrue(cell.empty());
+	}
 }
