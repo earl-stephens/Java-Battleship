@@ -20,6 +20,15 @@ public class Cell {
 
 	public void fire_upon() {
 		fired_upon = true;
-		ship.hit();
+		if(empty() == false) {
+			ship.hit();
+		}
+	}
+	
+	public String render() {
+		if(fired_upon & empty() == true) {
+			return "M";
+		}
+		return ".";
 	}
 }

@@ -51,4 +51,14 @@ class CellTest {
 		Assert.assertEquals(2, cell.ship.health);
 		Assert.assertTrue(cell.fired_upon);
 	}
+	
+	@Test
+	void testRenderForNotFiredUponInEmptyCell() {
+
+		Assert.assertEquals(".", cell.render());
+		
+		cell.fire_upon();
+		Assert.assertEquals("M", cell.render());
+	}
+	
 }
