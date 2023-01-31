@@ -55,10 +55,29 @@ class CellTest {
 	@Test
 	void testRenderForNotFiredUponInEmptyCell() {
 
-		Assert.assertEquals(".", cell.render());
+		Assert.assertEquals(".", cell.render(false));
 		
 		cell.fire_upon();
-		Assert.assertEquals("M", cell.render());
+		Assert.assertEquals("M", cell.render(false));
 	}
 	
+	@Test
+	void testRenderForAPopulatedCell() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		cell.place_ship(cruiser);
+		
+		Assert.assertEquals("S", cell.render(true));
+		
+		cell.fire_upon();
+		
+		Assert.assertEquals("H", cell.render(false));
+		Assert.assertEquals("H", cell.render(true));
+		
+		cruiser.hit();
+		cruiser.hit();
+		
+		Assert.assertTrue(cruiser.sunk());
+		Assert.assertEquals("X", cell.render(false));
+		Assert.assertEquals("X", cell.render(true));
+	}
 }

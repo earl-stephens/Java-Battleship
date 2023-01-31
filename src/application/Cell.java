@@ -25,9 +25,18 @@ public class Cell {
 		}
 	}
 	
-	public String render() {
+	public String render(boolean showArgument) {
 		if(fired_upon & empty() == true) {
 			return "M";
+		}
+		if(fired_upon == false & empty() == false & showArgument) {
+			return "S";
+		}
+		if(fired_upon & empty() == false) {
+			if(ship != null & ship.sunk()) return "X";
+		}
+		if(fired_upon & empty() == false) {
+			return "H";
 		}
 		return ".";
 	}
