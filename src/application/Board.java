@@ -23,4 +23,9 @@ public class Board {
 		cells.put("D3", new Cell("D3"));
 		cells.put("D4", new Cell("D4"));
 	}
+	
+	public boolean valid_coordinate(String coordinate) {
+		if(cells.containsKey(coordinate)) return true;
+		return false;
+	}
 }
