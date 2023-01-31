@@ -104,6 +104,11 @@ class BoardTest {
 		
 		Assert.assertFalse(board.areLettersConsecutive(cruiser, cruiserCoord));
 		Assert.assertTrue(board.areLettersConsecutive(submarine, subCoord));
+		
+		Ship destroyer = new Ship("Destroyer", 3);
+		String[] destroyerCoord = {"A1", "B2", "D3"};
+		
+		Assert.assertFalse(board.areLettersConsecutive(destroyer, destroyerCoord));
 	}
 	/*
 	@Test
