@@ -72,4 +72,13 @@ public class Board {
 		}
 		return charArray;
 	}
+	
+	public int[] charToIntArray(Ship ship, String[] coordinates) {
+		char[] charArray = stringToCharArray(ship, coordinates);
+		int[] unicodeNumberArray = new int[charArray.length];
+		for(int i = 0; i < charArray.length; i++) {
+			unicodeNumberArray[i] = (int)charArray[i];
+		}
+		return unicodeNumberArray;
+	}
 }

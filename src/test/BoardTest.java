@@ -80,6 +80,20 @@ class BoardTest {
 		Assert.assertFalse(Arrays.equals(badArray, board.stringToCharArray(submarine, subCoord)));
 	}
 	
+	@Test
+	void testForConvertingCharArrayToUnicodeNumbers() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		String[] cruiserCoord = {"A1", "A2", "A3"};
+		String[] subCoord = {"C2", "D2"};
+		
+		int[] cruiserExpected = {65, 65, 65};
+		int[] submarineExpected = {67, 68};
+		int[] badArray = {1, 53, 12};
+		Assert.assertArrayEquals(cruiserExpected, board.charToIntArray(cruiser, cruiserCoord));
+		Assert.assertArrayEquals(submarineExpected, board.charToIntArray(submarine, subCoord));
+		Assert.assertFalse(Arrays.equals(badArray, board.charToIntArray(cruiser, cruiserCoord)));
+	}
 	/*
 	@Test
 	void testForConsecutiveCoordinates() {
