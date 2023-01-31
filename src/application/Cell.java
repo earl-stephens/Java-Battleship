@@ -18,4 +18,8 @@ public class Cell {
 		this.ship = ship;
 	}
 
+	public void fire_upon() {
+		fired_upon = true;
+		ship.hit();
+	}
 }

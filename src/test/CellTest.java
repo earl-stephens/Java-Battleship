@@ -40,4 +40,15 @@ class CellTest {
 		
 		Assert.assertFalse(cell.fired_upon);
 	}
+	
+	@Test
+	void testFireUponMethod() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		cell.place_ship(cruiser);
+		
+		cell.fire_upon();
+		
+		Assert.assertEquals(2, cell.ship.health);
+		Assert.assertTrue(cell.fired_upon);
+	}
 }
