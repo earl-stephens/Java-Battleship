@@ -62,4 +62,14 @@ public class Board {
 		}
 		return numberArray;
 	}
+	
+	public char[] stringToCharArray(Ship ship, String[] coordinates) {
+		String[] letterArray = getLetterArray(ship, coordinates);
+		char[] charArray = new char[letterArray.length];
+		for(int i = 0; i < letterArray.length; i++) {
+			String letter = letterArray[i];
+			charArray[i] = letter.charAt(0);
+		}
+		return charArray;
+	}
 }

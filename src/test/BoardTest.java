@@ -38,7 +38,7 @@ class BoardTest {
 	}
 	*/
 	@Test
-	void testForBreakingUpCoordinateArray() {
+	void testForGettingLetterArray() {
 		Ship cruiser = new Ship("Cruiser", 3);
 		Ship submarine = new Ship("Submarine", 2);
 		String[] cruiserCoord = {"A1", "A2", "A3"};
@@ -64,6 +64,22 @@ class BoardTest {
 		Assert.assertArrayEquals(numbers2, board.getNumberArray(submarine, subCoord));
 		Assert.assertFalse(Arrays.equals(badArray, board.getNumberArray(cruiser,  cruiserCoord)));
 	}
+	
+	@Test
+	void testForConvertingLetterArrayToCharArray() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		String[] cruiserCoord = {"A1", "A2", "A3"};
+		String[] subCoord = {"C2", "D2"};
+		
+		char[] cruiserExpected = {'A', 'A', 'A'};
+		char[] submarineExpected = {'C', 'D'};
+		char[] badArray = {'A', '1', 'C'};
+		Assert.assertArrayEquals(cruiserExpected, board.stringToCharArray(cruiser, cruiserCoord));
+		Assert.assertArrayEquals(submarineExpected, board.stringToCharArray(submarine, subCoord));
+		Assert.assertFalse(Arrays.equals(badArray, board.stringToCharArray(submarine, subCoord)));
+	}
+	
 	/*
 	@Test
 	void testForConsecutiveCoordinates() {
