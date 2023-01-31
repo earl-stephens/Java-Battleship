@@ -57,9 +57,9 @@ class BoardTest {
 		String[] cruiserCoord = {"A1", "A2", "A3"};
 		String[] subCoord = {"C2", "C3"};
 		
-		String[] numbers = {"1", "2", "3"};
-		String[] numbers2 = {"2", "3"};
-		String[] badArray = {"2", "4"};
+		int[] numbers = {1, 2, 3};
+		int[] numbers2 = {2, 3};
+		int[] badArray = {2, 4};
 		Assert.assertArrayEquals(numbers, board.getNumberArray(cruiser, cruiserCoord));
 		Assert.assertArrayEquals(numbers2, board.getNumberArray(submarine, subCoord));
 		Assert.assertFalse(Arrays.equals(badArray, board.getNumberArray(cruiser,  cruiserCoord)));
@@ -109,6 +109,22 @@ class BoardTest {
 		String[] destroyerCoord = {"A1", "B2", "D3"};
 		
 		Assert.assertFalse(board.areLettersConsecutive(destroyer, destroyerCoord));
+	}
+	
+	@Test
+	void testForConsecutiveNumbers() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		String[] cruiserCoord = {"A1", "A2", "A3"};
+		String[] subCoord = {"C2", "D2"};
+		
+		Assert.assertTrue(board.areNumbersConsecutive(cruiser, cruiserCoord));
+		Assert.assertFalse(board.areNumbersConsecutive(submarine, subCoord));
+		
+		Ship destroyer = new Ship("Destroyer", 3);
+		String[] destroyerCoord = {"A1", "B2", "D4"};
+		
+		Assert.assertFalse(board.areNumbersConsecutive(destroyer, destroyerCoord));
 	}
 	/*
 	@Test

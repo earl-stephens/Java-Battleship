@@ -57,10 +57,10 @@ public class Board {
 		return letterArray;
 	}
 	
-	public String[] getNumberArray(Ship ship, String[] coordinates) {
-		String[] numberArray = new String[coordinates.length];
+	public int[] getNumberArray(Ship ship, String[] coordinates) {
+		int[] numberArray = new int[coordinates.length];
 		for(int i = 0; i < coordinates.length; i++) {
-			numberArray[i] = coordinates[i].split("")[1];
+			numberArray[i] = Integer.valueOf(coordinates[i].split("")[1]);
 		}
 		return numberArray;
 	}
@@ -89,6 +89,16 @@ public class Board {
 		int min = Arrays.stream(unicodeValues).min().getAsInt();
 		int max = Arrays.stream(unicodeValues).max().getAsInt();
 		if((max - min) + 1 == unicodeValues.length) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean areNumbersConsecutive(Ship ship, String[] coordinates) {
+		int[] numArray = getNumberArray(ship, coordinates);
+		int min = Arrays.stream(numArray).min().getAsInt();
+		int max = Arrays.stream(numArray).max().getAsInt();
+		if((max - min) + 1 == numArray.length) {
 			return true;
 		}
 		return false;
