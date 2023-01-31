@@ -3,6 +3,7 @@ package application;
 public class Cell {
 	public String coordinate;
 	public Ship ship = null;
+	public boolean fired_upon = false;
 	
 	public Cell(String coordinate) {
 		this.coordinate = coordinate;
@@ -16,4 +17,5 @@ public class Cell {
 	public void place_ship(Ship ship) {
 		this.ship = ship;
 	}
+
 }

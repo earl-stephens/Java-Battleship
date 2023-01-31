@@ -32,4 +32,12 @@ class CellTest {
 		Assert.assertEquals(3, cell.ship.health);
 		Assert.assertFalse(cell.empty());
 	}
+	
+	@Test
+	void testFiredUponAttribute() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		cell.place_ship(cruiser);
+		
+		Assert.assertFalse(cell.fired_upon);
+	}
 }
