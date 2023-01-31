@@ -23,4 +23,13 @@ class CellTest {
 	void testTheEmptyMethod() {
 		Assert.assertTrue(cell.empty());
 	}
+	
+	@Test
+	void testPlaceShipMethod() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		cell.place_ship(cruiser);
+		
+		Assert.assertEquals(3, cell.ship.health);
+		Assert.assertFalse(cell.empty());
+	}
 }
