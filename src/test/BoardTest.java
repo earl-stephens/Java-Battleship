@@ -94,6 +94,17 @@ class BoardTest {
 		Assert.assertArrayEquals(submarineExpected, board.charToIntArray(submarine, subCoord));
 		Assert.assertFalse(Arrays.equals(badArray, board.charToIntArray(cruiser, cruiserCoord)));
 	}
+	
+	@Test
+	void testForConsecutiveLetters() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		String[] cruiserCoord = {"A1", "A2", "A3"};
+		String[] subCoord = {"C2", "D2"};
+		
+		Assert.assertFalse(board.areLettersConsecutive(cruiser, cruiserCoord));
+		Assert.assertTrue(board.areLettersConsecutive(submarine, subCoord));
+	}
 	/*
 	@Test
 	void testForConsecutiveCoordinates() {

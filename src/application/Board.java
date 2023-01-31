@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Board {
@@ -80,5 +82,15 @@ public class Board {
 			unicodeNumberArray[i] = (int)charArray[i];
 		}
 		return unicodeNumberArray;
+	}
+	
+	public boolean areLettersConsecutive(Ship ship, String[] coordinates) {
+		int[] unicodeValues = charToIntArray(ship, coordinates);
+		int min = Arrays.stream(unicodeValues).min().getAsInt();
+		int max = Arrays.stream(unicodeValues).max().getAsInt();
+		if((max - min) + 1 == unicodeValues.length) {
+			return true;
+		}
+		return false;
 	}
 }
