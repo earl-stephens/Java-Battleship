@@ -43,7 +43,7 @@ public class Board {
 		return false;		
 	}
 	
-	public boolean validateConsecutive(Ship ship, String[] coordinates) {
+	private boolean validateConsecutive(Ship ship, String[] coordinates) {
 		boolean numCheck = isConsecutive(getNumberArray(ship, coordinates));
 		boolean letterCheck = isConsecutive(charToIntArray(ship, coordinates));
 		if(numCheck ^ letterCheck) {

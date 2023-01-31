@@ -11,6 +11,16 @@ import org.junit.jupiter.api.Test;
 class BoardTest {
 	public Board board = new Board();
 	
+	
+	/* NOTE:
+	 * There are many tests here that are commented out.  These tests were used to develop
+	 * the valid_placement() method.  The methods that valid_placement calls were set to public
+	 * for development purposes and for testing.  When the tests were passing and the code 
+	 * was written, the methods were set to private (since only valid_placement() needs to be 
+	 * public.  The tests for these private methods were then commented out.  These 
+	 * commented out tests are left here to show how the development process happened.
+	 */
+	
 	@Test
 	void testForBoardObject() {
 		
@@ -26,7 +36,7 @@ class BoardTest {
 		Assert.assertFalse(board.valid_coordinate("E1"));
 		Assert.assertFalse(board.valid_coordinate("A22"));
 	}
-	
+	/*
 	@Test
 	void testForCorrectArrayLength() {
 		Ship cruiser = new Ship("Cruiser", 3);
@@ -35,6 +45,36 @@ class BoardTest {
 		String[] subCoord = {"A1", "A2", "A3"};
 		Assert.assertTrue(board.valid_placement(cruiser, cruiserCoord));
 		Assert.assertFalse(board.valid_placement(submarine, subCoord));
+	}
+	*/
+	@Test
+	void testForValidPlacement() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		Ship destroyer = new Ship("Destroyer", 3);
+		Ship carrier = new Ship("Carrier", 3);
+		Ship hovercraft = new Ship("Hovercraft", 3);
+		
+		//correct values all around
+		String[] cruiserCoord = {"A1", "A2", "A3"};
+		
+		//check for wrong legth
+		String[] subCoord = {"A1", "A2", "A3"};
+		
+		//check for consecutive letters
+		String[] destroyerCoord = {"A1", "B2", "D4"};
+
+		//check for diagonal coordinates
+		String[] carrierCoord = {"B1", "C2", "D3"};
+		
+		//check for vertical placement
+		String[] hovercraftCoord = {"D2", "D3", "D4"};
+		
+		Assert.assertTrue(board.valid_placement(cruiser, cruiserCoord));
+		Assert.assertFalse(board.valid_placement(submarine, subCoord));
+		Assert.assertFalse(board.valid_placement(destroyer, destroyerCoord));
+		Assert.assertFalse(board.valid_placement(carrier, carrierCoord));
+		Assert.assertTrue(board.valid_placement(hovercraft, hovercraftCoord));
 	}
 	
 	/*
@@ -96,7 +136,6 @@ class BoardTest {
 		Assert.assertFalse(Arrays.equals(badArray, board.charToIntArray(cruiser, cruiserCoord)));
 	}
 
-	*/
 	@Test
 	void testForConsecutiveCoordinates() {
 		Ship cruiser = new Ship("Cruiser", 3);
@@ -122,5 +161,5 @@ class BoardTest {
 		
 		Assert.assertFalse(board.validateConsecutive(carrier, carrierCoord));
 	}
-	
+	*/
 }
