@@ -30,7 +30,36 @@ public class Board {
 	}
 	
 	public boolean valid_placement(Ship ship, String[] coordinates) {
-		if(ship.length == coordinates.length) return true; 
+		boolean length = validateLength(ship, coordinates);
+		boolean consecutive = validateConsecutive(ship, coordinates);
+		
+		if(length & consecutive) return true;
 		return false;
+	}
+	
+	private boolean validateLength(Ship ship, String[] coordinates) {
+		if(ship.length == coordinates.length) return true; 
+		return false;		
+	}
+	
+	private boolean validateConsecutive(Ship ship, String[] coordinates) {
+		
+		return false;
+	}
+	
+	public String[] getLetterArray(Ship ship, String[] coordinates) {
+		String[] letterArray = new String[coordinates.length];
+		for(int i = 0; i < coordinates.length; i++) {
+			letterArray[i] = coordinates[i].split("")[0];
+		}
+		return letterArray;
+	}
+	
+	public String[] getNumberArray(Ship ship, String[] coordinates) {
+		String[] numberArray = new String[coordinates.length];
+		for(int i = 0; i < coordinates.length; i++) {
+			numberArray[i] = coordinates[i].split("")[1];
+		}
+		return numberArray;
 	}
 }
