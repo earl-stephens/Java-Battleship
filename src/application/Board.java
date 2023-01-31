@@ -44,8 +44,12 @@ public class Board {
 		return false;		
 	}
 	
-	private boolean validateConsecutive(Ship ship, String[] coordinates) {
-		
+	public boolean validateConsecutive(Ship ship, String[] coordinates) {
+		boolean numCheck = isConsecutive(getNumberArray(ship, coordinates));
+		boolean letterCheck = isConsecutive(charToIntArray(ship, coordinates));
+		if(numCheck ^ letterCheck) {
+			return true;
+		}
 		return false;
 	}
 	
@@ -102,5 +106,15 @@ public class Board {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean isConsecutive(int[] testArray) {
+		int min = Arrays.stream(testArray).min().getAsInt();
+		int max = Arrays.stream(testArray).max().getAsInt();
+		if((max - min) + 1 == testArray.length) {
+			return true;
+		}
+		return false;
+		
 	}
 }

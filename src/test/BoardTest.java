@@ -126,7 +126,7 @@ class BoardTest {
 		
 		Assert.assertFalse(board.areNumbersConsecutive(destroyer, destroyerCoord));
 	}
-	/*
+	
 	@Test
 	void testForConsecutiveCoordinates() {
 		Ship cruiser = new Ship("Cruiser", 3);
@@ -134,8 +134,23 @@ class BoardTest {
 		String[] cruiserCoord = {"A1", "A2", "A3"};
 		String[] subCoord = {"A1", "A3"};
 		
-		Assert.assertTrue(board.valid_placement(cruiser, cruiserCoord));
-		Assert.assertFalse(board.valid_placement(submarine, subCoord));
+		Assert.assertTrue(board.validateConsecutive(cruiser, cruiserCoord));
+		Assert.assertFalse(board.validateConsecutive(submarine, subCoord));
+		
+		Ship destroyer = new Ship("Destroyer", 3);
+		String[] destroyerCoord = {"A1", "B2", "D4"};
+		
+		Assert.assertFalse(board.validateConsecutive(destroyer, destroyerCoord));
+		
+		Ship frigate = new Ship("Frigate", 3);
+		String[] frigateCoord = {"A1", "B1"};
+		
+		Assert.assertTrue(board.validateConsecutive(frigate, frigateCoord));
+		
+		Ship carrier = new Ship("Carrier", 3);
+		String[] carrierCoord = {"B1", "C2", "D3"};
+		
+		Assert.assertFalse(board.validateConsecutive(carrier, carrierCoord));
 	}
-	*/
+	
 }
