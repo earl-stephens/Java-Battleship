@@ -1,7 +1,6 @@
 package application;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class Board {
@@ -53,7 +52,7 @@ public class Board {
 		return false;
 	}
 	
-	public String[] getLetterArray(Ship ship, String[] coordinates) {
+	private String[] getLetterArray(Ship ship, String[] coordinates) {
 		String[] letterArray = new String[coordinates.length];
 		for(int i = 0; i < coordinates.length; i++) {
 			letterArray[i] = coordinates[i].split("")[0];
@@ -61,7 +60,7 @@ public class Board {
 		return letterArray;
 	}
 	
-	public int[] getNumberArray(Ship ship, String[] coordinates) {
+	private int[] getNumberArray(Ship ship, String[] coordinates) {
 		int[] numberArray = new int[coordinates.length];
 		for(int i = 0; i < coordinates.length; i++) {
 			numberArray[i] = Integer.valueOf(coordinates[i].split("")[1]);
@@ -69,7 +68,7 @@ public class Board {
 		return numberArray;
 	}
 	
-	public char[] stringToCharArray(Ship ship, String[] coordinates) {
+	private char[] stringToCharArray(Ship ship, String[] coordinates) {
 		String[] letterArray = getLetterArray(ship, coordinates);
 		char[] charArray = new char[letterArray.length];
 		for(int i = 0; i < letterArray.length; i++) {
@@ -79,7 +78,7 @@ public class Board {
 		return charArray;
 	}
 	
-	public int[] charToIntArray(Ship ship, String[] coordinates) {
+	private int[] charToIntArray(Ship ship, String[] coordinates) {
 		char[] charArray = stringToCharArray(ship, coordinates);
 		int[] unicodeNumberArray = new int[charArray.length];
 		for(int i = 0; i < charArray.length; i++) {
@@ -87,28 +86,8 @@ public class Board {
 		}
 		return unicodeNumberArray;
 	}
-	
-	public boolean areLettersConsecutive(Ship ship, String[] coordinates) {
-		int[] unicodeValues = charToIntArray(ship, coordinates);
-		int min = Arrays.stream(unicodeValues).min().getAsInt();
-		int max = Arrays.stream(unicodeValues).max().getAsInt();
-		if((max - min) + 1 == unicodeValues.length) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean areNumbersConsecutive(Ship ship, String[] coordinates) {
-		int[] numArray = getNumberArray(ship, coordinates);
-		int min = Arrays.stream(numArray).min().getAsInt();
-		int max = Arrays.stream(numArray).max().getAsInt();
-		if((max - min) + 1 == numArray.length) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean isConsecutive(int[] testArray) {
+
+	private boolean isConsecutive(int[] testArray) {
 		int min = Arrays.stream(testArray).min().getAsInt();
 		int max = Arrays.stream(testArray).max().getAsInt();
 		if((max - min) + 1 == testArray.length) {
