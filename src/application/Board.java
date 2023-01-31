@@ -28,4 +28,9 @@ public class Board {
 		if(cells.containsKey(coordinate)) return true;
 		return false;
 	}
+	
+	public boolean valid_placement(Ship ship, String[] coordinates) {
+		if(ship.length == coordinates.length) return true; 
+		return false;
+	}
 }
