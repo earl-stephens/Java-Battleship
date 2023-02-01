@@ -76,7 +76,7 @@ class BoardTest {
 		Assert.assertFalse(board.valid_placement(carrier, carrierCoord));
 		Assert.assertTrue(board.valid_placement(hovercraft, hovercraftCoord));
 	}
-	
+
 	/*
 	@Test
 	void testForGettingLetterArray() {
