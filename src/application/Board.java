@@ -38,8 +38,9 @@ public class Board {
 	public boolean valid_placement(Ship ship, String[] coordinates) {
 		boolean length = validateLength(ship, coordinates);
 		boolean consecutive = validateConsecutive(ship, coordinates);
+		boolean overlap	= noOverlap(ship, coordinates);
 		
-		if(length & consecutive) return true;
+		if(length & consecutive & overlap) return true;
 		return false;
 	}
 	
@@ -99,6 +100,16 @@ public class Board {
 			return true;
 		}
 		return false;
-		
+	}
+	
+	private boolean noOverlap(Ship ship, String[] coordinates) {
+		boolean status = true;
+		for(int i = 0; i < coordinates.length; i++) {
+			Cell cell = cells.get(coordinates[i]);
+			if(!cell.empty() & (cell.ship != ship)) {
+				status = false;
+			}
+		}
+		return status;
 	}
 }
