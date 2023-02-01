@@ -76,6 +76,17 @@ class BoardTest {
 		Assert.assertFalse(board.valid_placement(carrier, carrierCoord));
 		Assert.assertTrue(board.valid_placement(hovercraft, hovercraftCoord));
 	}
+	
+	@Test
+	void testPlacingAShip() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		String[] cruiserCoord = {"B2", "B3", "B4"};
+		board.place(cruiser, cruiserCoord);
+		
+		Assert.assertEquals(board.cells.get("B2").ship, board.cells.get("B3").ship);
+		Assert.assertEquals(board.cells.get("B4").ship, board.cells.get("B3").ship);
+		Assert.assertEquals(board.cells.get("B2").ship, board.cells.get("B4").ship);
+	}
 
 	/*
 	@Test
