@@ -58,7 +58,7 @@ class BoardTest {
 		//correct values all around
 		String[] cruiserCoord = {"A1", "A2", "A3"};
 		
-		//check for wrong legth
+		//check for wrong length
 		String[] subCoord = {"A1", "A2", "A3"};
 		
 		//check for consecutive letters
@@ -75,6 +75,32 @@ class BoardTest {
 		Assert.assertFalse(board.valid_placement(destroyer, destroyerCoord));
 		Assert.assertFalse(board.valid_placement(carrier, carrierCoord));
 		Assert.assertTrue(board.valid_placement(hovercraft, hovercraftCoord));
+	}
+	
+	@Test
+	void testPlacingAShip() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		String[] cruiserCoord = {"B2", "B3", "B4"};
+		board.place(cruiser, cruiserCoord);
+		
+		Assert.assertEquals(board.cells.get("B2").ship, board.cells.get("B3").ship);
+		Assert.assertEquals(board.cells.get("B4").ship, board.cells.get("B3").ship);
+		Assert.assertEquals(board.cells.get("B2").ship, board.cells.get("B4").ship);
+	}
+	
+	@Test
+	void testForOverlappingShips() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		Ship destroyer = new Ship("Destroyer", 3);
+		String[] cruiserCoord = {"A1", "A2", "A3"};
+		String[] subCoord = {"A1", "B1"};
+		String[] destroyerCoord = {"D1", "D2", "D3"};
+		board.place(cruiser, cruiserCoord);
+		
+		Assert.assertTrue(board.valid_placement(cruiser, cruiserCoord));
+		Assert.assertFalse(board.valid_placement(submarine, subCoord));
+		Assert.assertTrue(board.valid_placement(destroyer, destroyerCoord));
 	}
 
 	/*
@@ -161,5 +187,16 @@ class BoardTest {
 		
 		Assert.assertFalse(board.validateConsecutive(carrier, carrierCoord));
 	}
-	*/
+	
+	@Test
+	void testForOverlapCheck() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		String[] cruiserCoord = {"A1", "A2", "A3"};
+		String[] subCoord = {"A1", "B1"};
+		board.place(cruiser, cruiserCoord);
+
+		Assert.assertFalse(board.noOverlap(subCoord));
+	}
+	 */
 }
