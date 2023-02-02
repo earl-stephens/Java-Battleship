@@ -10,7 +10,14 @@ class ComputerTest {
 	
 	@Test
 	void testForComputerObject() {
+		
 		Assert.assertNotNull(computer);;
+	}
+	
+	@Test
+	void testForHavingABoard() {
+		
+		Assert.assertNotNull(computer.board.cells);
 	}
 
 }
