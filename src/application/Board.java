@@ -112,4 +112,46 @@ public class Board {
 		}
 		return status;
 	}
+	
+	public void render(boolean showArgument) {
+		String row1 = "  1 2 3 4";
+		String row2 = "A "
+				+ cells.get("A1").render(showArgument)
+				+ " "
+				+ cells.get("A2").render(showArgument)
+				+ " "
+				+ cells.get("A3").render(showArgument)
+				+ " "
+				+ cells.get("A4").render(showArgument);
+		String row3 = "B "
+				+ cells.get("B1").render(showArgument)
+				+ " "
+				+ cells.get("B2").render(showArgument)
+				+ " "
+				+ cells.get("B3").render(showArgument)
+				+ " "
+				+ cells.get("B4").render(showArgument);
+		String row4 = "C "
+				+ cells.get("C1").render(showArgument)
+				+ " "
+				+ cells.get("C2").render(showArgument)
+				+ " "
+				+ cells.get("C3").render(showArgument)
+				+ " "
+				+ cells.get("C4").render(showArgument);
+		String row5 = "D "
+				+ cells.get("D1").render(showArgument)
+				+ " "
+				+ cells.get("D2").render(showArgument)
+				+ " "
+				+ cells.get("D3").render(showArgument)
+				+ " "
+				+ cells.get("D4").render(showArgument);
+		
+		System.out.println(row1);
+		System.out.println(row2);
+		System.out.println(row3);
+		System.out.println(row4);
+		System.out.println(row5);
+	}
 }
