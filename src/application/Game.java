@@ -3,11 +3,16 @@ package application;
 import java.util.Scanner;
 
 public class Game {
-	Player player1 = new Player("User");
-	Player player2 = new Player("Computer");
+	Player user = new Player("User");
+	Computer computer = new Computer();
 	
 	public void start() {
-		mainMenu();
+		String startOrQuit = mainMenu();
+		if(startOrQuit == "q") {
+			System.out.println("Thanks for playing.");
+		} else {
+			//placement();
+		}
 	}
 	
 	public String mainMenu() {
@@ -20,4 +25,10 @@ public class Game {
 	
 		return output;
 	}
+	/*
+	public void placement() {
+		Ship cruiserComputer = new Ship("Cruiser", 3);
+		computer.place(cruiserComputer);
+	}
+	*/
 }
