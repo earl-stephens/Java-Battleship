@@ -20,4 +20,9 @@ public class Computer {
 			return "C";
 		}
 	}
+	
+	public int pickWhichRowOrColumn() {
+		int randomNum =(int)((Math.random() * 4) +1);
+		return randomNum;
+	}
 }
