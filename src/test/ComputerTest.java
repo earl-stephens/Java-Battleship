@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 class ComputerTest {
@@ -43,7 +44,7 @@ class ComputerTest {
 		Assert.assertTrue("R".equals(output) || "C".equals(output));
 	}
 	
-	@Test
+	@RepeatedTest(5)
 	void testForPickingWhichRowOrColumn() {
 		int output = computer.pickWhichRowOrColumn();
 		List<Integer> expected = new ArrayList<Integer>();
@@ -56,15 +57,37 @@ class ComputerTest {
 		Assert.assertTrue(check);
 	}
 	
-	@Test
+	@RepeatedTest(5)
 	void testForPickingRowStartingPoint() {
-		int output = computer.pickRowStartingPoint();
+		int output = computer.pickRowStartingPoint(3);
 		List<Integer> expected = new ArrayList<Integer>();
 		expected.add(1);
 		expected.add(2);
+		expected.add(3);
 		
 		boolean check = expected.contains(output);
 		
+		Assert.assertTrue(check);
+		
+		output = computer.pickRowStartingPoint(2);
+		check = expected.contains(output);
+		Assert.assertTrue(check);
+	}
+	
+	@RepeatedTest(5)
+	void testForPickingColumnStartingPoint() {
+		String output = computer.pickColumnStartingPoint(3);
+		List<String> expected = new ArrayList<String>();
+		expected.add("A");
+		expected.add("B");
+		expected.add("C");
+		
+		boolean check = expected.contains(output);
+		
+		Assert.assertTrue(check);
+		
+		output = computer.pickColumnStartingPoint(2);
+		check = expected.contains(output);
 		Assert.assertTrue(check);
 	}
 }

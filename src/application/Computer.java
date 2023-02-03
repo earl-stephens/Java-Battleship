@@ -26,8 +26,14 @@ public class Computer {
 		return randomNum;
 	}
 	
-	public int pickRowStartingPoint() {
-		int randomNum = (int)((Math.random() * 2) + 1);
+	public int pickRowStartingPoint(int size) {
+		int randomNum = (int)((Math.random() * size) + 1);
 		return randomNum;
+	}
+	
+	public String pickColumnStartingPoint(int size) {
+		String[] letters = {"A", "B", "C"};
+		int randomNum = (int)(Math.random() * size);
+		return letters[randomNum];
 	}
 }
