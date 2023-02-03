@@ -27,13 +27,12 @@ public class Computer {
 	}
 	
 	public int pickRowStartingPoint(int size) {
-		int randomNum = (int)((Math.random() * size) + 1);
+		int randomNum = (int)((Math.random() * (size -1)) + 1);
 		return randomNum;
 	}
 	
 	public String pickColumnStartingPoint(int size) {
-		String[] letters = {"A", "B", "C"};
-		int randomNum = (int)(Math.random() * size);
-		return letters[randomNum];
+		char randomNum = (char)(Math.random() * ((65 + size - 1) -65) + 65);
+		return String.valueOf(randomNum);
 	}
 }

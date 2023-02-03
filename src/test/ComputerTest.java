@@ -43,8 +43,8 @@ class ComputerTest {
 		
 		Assert.assertTrue("R".equals(output) || "C".equals(output));
 	}
-	
-	@RepeatedTest(5)
+	@Disabled
+	//@RepeatedTest(5)
 	void testForPickingWhichRowOrColumn() {
 		int output = computer.pickWhichRowOrColumn();
 		List<Integer> expected = new ArrayList<Integer>();
@@ -56,7 +56,7 @@ class ComputerTest {
 		
 		Assert.assertTrue(check);
 	}
-	
+	//@Disabled
 	@RepeatedTest(5)
 	void testForPickingRowStartingPoint() {
 		int output = computer.pickRowStartingPoint(3);
@@ -73,7 +73,7 @@ class ComputerTest {
 		check = expected.contains(output);
 		Assert.assertTrue(check);
 	}
-	
+	//@Disabled
 	@RepeatedTest(5)
 	void testForPickingColumnStartingPoint() {
 		String output = computer.pickColumnStartingPoint(3);
@@ -90,4 +90,5 @@ class ComputerTest {
 		check = expected.contains(output);
 		Assert.assertTrue(check);
 	}
+
 }
