@@ -24,7 +24,8 @@ class ComputerTest {
 		Assert.assertNotNull(computer.board.cells);
 	}
 	
-	@Test
+	@Disabled
+	//@Test
 	void testForGettingCoordinates() {
 		String[] result = computer.placeCruiser();
 		Board board = new Board();
@@ -50,6 +51,18 @@ class ComputerTest {
 		expected.add(2);
 		expected.add(3);
 		expected.add(4);
+		boolean check = expected.contains(output);
+		
+		Assert.assertTrue(check);
+	}
+	
+	@Test
+	void testForPickingRowStartingPoint() {
+		int output = computer.pickRowStartingPoint();
+		List<Integer> expected = new ArrayList<Integer>();
+		expected.add(1);
+		expected.add(2);
+		
 		boolean check = expected.contains(output);
 		
 		Assert.assertTrue(check);

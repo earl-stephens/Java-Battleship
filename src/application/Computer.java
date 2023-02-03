@@ -22,7 +22,12 @@ public class Computer {
 	}
 	
 	public int pickWhichRowOrColumn() {
-		int randomNum =(int)((Math.random() * 4) +1);
+		int randomNum = (int)((Math.random() * 4) +1);
+		return randomNum;
+	}
+	
+	public int pickRowStartingPoint() {
+		int randomNum = (int)((Math.random() * 2) + 1);
 		return randomNum;
 	}
 }
