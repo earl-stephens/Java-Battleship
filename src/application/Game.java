@@ -28,7 +28,7 @@ public class Game {
 	/*
 	public void placement() {
 		Ship cruiserComputer = new Ship("Cruiser", 3);
-		computer.place(cruiserComputer);
+		computer.placeCruiser();
 	}
 	*/
 }
