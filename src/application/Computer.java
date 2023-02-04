@@ -17,6 +17,7 @@ public class Computer {
 		
 		if(rowOrColumn == "C") {
 			columnStart = pickColumnStartingPoint(3);
+			return buildCoordinateArrayWithColumn(startRowOrColumn,columnStart);
 		} else {
 			rowStart = pickRowStartingPoint(3);
 		}
@@ -46,11 +47,34 @@ public class Computer {
 	}
 	
 	public String pickColumnStartingPoint(int size) {
-		char randomNum = (char)(Math.random() * ((65 + size - 1) -65) + 65);
+		int max = (int)Math.sqrt(board.cells.size()) - size;
+		char randomNum = (char)(Math.random() * ((max + 65) - 65) + 65);
 		return String.valueOf(randomNum);
 	}
 	
-	public String[] buildCoordinateArray(String rowOrColumn, String startRowOrColumn, String startingPoint) {
-		return null;
+	public String[] buildCoordinateArrayWithColumn(String startRowOrColumn, String columnStart) {		
+		String startCoord = columnStart;
+		startCoord = startCoord + startRowOrColumn;
+		
+		String[] columnCoords = new String[3];
+		columnCoords[0] = startCoord;
+		startCoord = null;
+		
+		char secondLetter = columnStart.charAt(0);
+		secondLetter = (char)(secondLetter + 1);
+		
+		startCoord = String.valueOf(secondLetter);
+		startCoord = startCoord + startRowOrColumn;
+		columnCoords[1] = startCoord;
+		startCoord = null;
+		
+		char thirdLetter = columnStart.charAt(0);
+		thirdLetter = (char)(thirdLetter + 2);
+		
+		startCoord = String.valueOf(thirdLetter);
+		startCoord = startCoord + startRowOrColumn;
+		columnCoords[2] = startCoord;
+		
+		return columnCoords;
 	}
 }

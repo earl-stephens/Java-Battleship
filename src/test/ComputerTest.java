@@ -81,14 +81,19 @@ class ComputerTest {
 		expected.add("A");
 		expected.add("B");
 		expected.add("C");
-		
 		boolean check = expected.contains(output);
-		
+
 		Assert.assertTrue(check);
 		
 		output = computer.pickColumnStartingPoint(2);
 		check = expected.contains(output);
 		Assert.assertTrue(check);
+	}
+	
+	@Test
+	void testForCreatingCoordinateArray() {
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("3", "B").length);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("1", "A").length);
 	}
 
 }
