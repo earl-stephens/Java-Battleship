@@ -43,15 +43,15 @@ class ComputerTest {
 		
 		Assert.assertTrue("R".equals(output) || "C".equals(output));
 	}
-	@Disabled
-	//@RepeatedTest(5)
+	//@Disabled
+	@RepeatedTest(5)
 	void testForPickingWhichRowOrColumn() {
-		int output = computer.pickWhichRowOrColumn();
-		List<Integer> expected = new ArrayList<Integer>();
-		expected.add(1);
-		expected.add(2);
-		expected.add(3);
-		expected.add(4);
+		String output = computer.pickWhichRowOrColumn();
+		List<String> expected = new ArrayList<String>();
+		expected.add("1");
+		expected.add("2");
+		expected.add("3");
+		expected.add("4");
 		boolean check = expected.contains(output);
 		
 		Assert.assertTrue(check);
@@ -59,11 +59,11 @@ class ComputerTest {
 	//@Disabled
 	@RepeatedTest(5)
 	void testForPickingRowStartingPoint() {
-		int output = computer.pickRowStartingPoint(3);
-		List<Integer> expected = new ArrayList<Integer>();
-		expected.add(1);
-		expected.add(2);
-		expected.add(3);
+		String output = computer.pickRowStartingPoint(3);
+		List<String> expected = new ArrayList<String>();
+		expected.add("1");
+		expected.add("2");
+		expected.add("3");
 		
 		boolean check = expected.contains(output);
 		
