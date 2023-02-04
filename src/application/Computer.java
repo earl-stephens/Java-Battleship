@@ -20,11 +20,8 @@ public class Computer {
 			return buildCoordinateArrayWithColumn(startRowOrColumn,columnStart);
 		} else {
 			rowStart = pickRowStartingPoint(3);
+			return buildCoordinateArrayWithRow(startRowOrColumn, rowStart);
 		}
-		
-		
-		
-		return null;
 	}
 	
 	public String pickRowOrColumn() {
@@ -76,5 +73,35 @@ public class Computer {
 		columnCoords[2] = startCoord;
 		
 		return columnCoords;
+	}
+	
+	public String[] buildCoordinateArrayWithRow(String startRowOrColumn, String rowStart) {	
+		int adder = Integer.parseInt(startRowOrColumn);
+		char rowLetter = (char)64;
+		rowLetter = (char)(rowLetter + adder);
+		
+		String startCoord = String.valueOf(rowLetter);
+		startCoord = startCoord + rowStart;
+		
+		String[] rowCoords = new String[3];
+		rowCoords[0] = startCoord;
+		startCoord = null;
+		
+		char secondLetter = rowStart.charAt(0);
+		secondLetter = (char)(secondLetter + 1);
+		
+		startCoord = String.valueOf(rowLetter);
+		startCoord = startCoord + String.valueOf(secondLetter);
+		rowCoords[1] = startCoord;
+		startCoord = null;
+		
+		char thirdLetter = rowStart.charAt(0);
+		thirdLetter = (char)(thirdLetter + 2);
+		
+		startCoord = String.valueOf(rowLetter);
+		startCoord = startCoord + String.valueOf(thirdLetter);
+		rowCoords[2] = startCoord;
+		
+		return rowCoords;
 	}
 }

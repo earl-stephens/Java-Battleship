@@ -25,8 +25,8 @@ class ComputerTest {
 		Assert.assertNotNull(computer.board.cells);
 	}
 	
-	@Disabled
-	//@Test
+	//@Disabled
+	@Test
 	void testForGettingCoordinates() {
 		String[] result = computer.placeCruiser();
 		Board board = new Board();
@@ -37,7 +37,8 @@ class ComputerTest {
 		}
 	}
 
-	@Test
+	//@Test
+	@RepeatedTest(10)
 	void testForPickingHorizontalOrVertical() {
 		String output = computer.pickRowOrColumn();
 		
@@ -91,9 +92,20 @@ class ComputerTest {
 	}
 	
 	@Test
-	void testForCreatingCoordinateArray() {
+	void testForCreatingCoordinateArrayColumnStart() {
 		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("3", "B").length);
 		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("1", "A").length);
+	}
+	
+	@Test
+	void testForCreatingCoordinateArrayRowStart() {
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("2", "2").length);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("4", "1").length);
+	}
+	
+	@RepeatedTest(10)
+	void testPlaceCruiserMethod() {
+		Assert.assertEquals(3, computer.placeCruiser().length);
 	}
 
 }
