@@ -49,7 +49,7 @@ class ComputerTest {
 	@RepeatedTest(5)
 	void testForPickingWhichRowOrColumn() {
 		Ship cruiser = new Ship("Cruiser", 3);
-		String output = computer.pickWhichRowOrColumn(cruiser);
+		String output = computer.pickWhichRowOrColumn(cruiser.length);
 		List<String> expected = new ArrayList<String>();
 		expected.add("1");
 		expected.add("2");

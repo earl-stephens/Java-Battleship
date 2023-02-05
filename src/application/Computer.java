@@ -13,13 +13,13 @@ public class Computer {
 		
 		String rowOrColumn = pickRowOrColumn();
 		
-		String startRowOrColumn = pickWhichRowOrColumn(ship);
+		String startRowOrColumn = pickWhichRowOrColumn(ship.length);
 		
 		if(rowOrColumn == "C") {
-			columnStart = pickColumnStartingPoint(3);
+			columnStart = pickColumnStartingPoint(ship.length);
 			return buildCoordinateArrayWithColumn(startRowOrColumn,columnStart);
 		} else {
-			rowStart = pickRowStartingPoint(3);
+			rowStart = pickRowStartingPoint(ship.length);
 			return buildCoordinateArrayWithRow(startRowOrColumn, rowStart);
 		}
 	}
@@ -33,8 +33,8 @@ public class Computer {
 		}
 	}
 	
-	public String pickWhichRowOrColumn(Ship ship) {
-		int max = (int)Math.sqrt(board.cells.size()) - ship.length;
+	public String pickWhichRowOrColumn(int size) {
+		int max = (int)Math.sqrt(board.cells.size()) - size;
 		int randomNum = (int)((Math.random() * max) +1);
 		return String.valueOf(randomNum);
 	}
