@@ -13,7 +13,7 @@ public class Computer {
 		
 		String rowOrColumn = pickRowOrColumn();
 		
-		String startRowOrColumn = pickWhichRowOrColumn();
+		String startRowOrColumn = pickWhichRowOrColumn(ship);
 		
 		if(rowOrColumn == "C") {
 			columnStart = pickColumnStartingPoint(3);
@@ -33,8 +33,9 @@ public class Computer {
 		}
 	}
 	
-	public String pickWhichRowOrColumn() {
-		int randomNum = (int)((Math.random() * 4) +1);
+	public String pickWhichRowOrColumn(Ship ship) {
+		int max = (int)Math.sqrt(board.cells.size()) - ship.length;
+		int randomNum = (int)((Math.random() * max) +1);
 		return String.valueOf(randomNum);
 	}
 	
