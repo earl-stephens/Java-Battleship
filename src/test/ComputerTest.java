@@ -97,6 +97,10 @@ class ComputerTest {
 		Ship cruiser = new Ship("Cruiser", 3);
 		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("3", "B", cruiser.length).length);
 		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("1", "A", cruiser.length).length);
+		
+		Ship submarine = new Ship("Submarine", 2);
+		Assert.assertEquals(2, computer.buildCoordinateArrayWithColumn("3", "B", submarine.length).length);
+		Assert.assertEquals(2, computer.buildCoordinateArrayWithColumn("4", "C", submarine.length).length);
 	}
 	
 	@Test
