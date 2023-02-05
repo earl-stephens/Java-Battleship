@@ -7,7 +7,7 @@ public class Computer {
 		this.board = new Board();
 	}
 	
-	public String[] placeCruiser() {
+	public String[] placeShip(Ship ship) {
 		String columnStart;
 		String rowStart;
 		
