@@ -25,7 +25,6 @@ class ComputerTest {
 		Assert.assertNotNull(computer.board.cells);
 	}
 	
-	//@Disabled
 	@Test
 	void testForGettingCoordinates() {
 		Ship cruiser = new Ship("Cruiser", 3);
@@ -45,7 +44,7 @@ class ComputerTest {
 		
 		Assert.assertTrue("R".equals(output) || "C".equals(output));
 	}
-	//@Disabled
+
 	@RepeatedTest(5)
 	void testForPickingWhichRowOrColumn() {
 		Ship cruiser = new Ship("Cruiser", 3);
@@ -59,7 +58,7 @@ class ComputerTest {
 		
 		Assert.assertTrue(check);
 	}
-	//@Disabled
+
 	@RepeatedTest(5)
 	void testForPickingRowStartingPoint() {
 		String output = computer.pickRowStartingPoint(3);
@@ -76,7 +75,7 @@ class ComputerTest {
 		check = expected.contains(output);
 		Assert.assertTrue(check);
 	}
-	//@Disabled
+
 	@RepeatedTest(5)
 	void testForPickingColumnStartingPoint() {
 		String output = computer.pickColumnStartingPoint(3);
@@ -95,8 +94,9 @@ class ComputerTest {
 	
 	@Test
 	void testForCreatingCoordinateArrayColumnStart() {
-		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("3", "B").length);
-		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("1", "A").length);
+		Ship cruiser = new Ship("Cruiser", 3);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("3", "B", cruiser.length).length);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("1", "A", cruiser.length).length);
 	}
 	
 	@Test

@@ -11,14 +11,18 @@ public class Computer {
 		String columnStart;
 		String rowStart;
 		
+		//Will ship be placed horizontally or vertically
 		String rowOrColumn = pickRowOrColumn();
 		
+		//Which row or column will the ship be in
 		String startRowOrColumn = pickWhichRowOrColumn(ship.length);
 		
 		if(rowOrColumn == "C") {
+			//Where in the column is the first coordinate
 			columnStart = pickColumnStartingPoint(ship.length);
-			return buildCoordinateArrayWithColumn(startRowOrColumn,columnStart);
+			return buildCoordinateArrayWithColumn(startRowOrColumn,columnStart, ship.length);
 		} else {
+			//Where in the row is the first coordinate
 			rowStart = pickRowStartingPoint(ship.length);
 			return buildCoordinateArrayWithRow(startRowOrColumn, rowStart);
 		}
@@ -50,28 +54,26 @@ public class Computer {
 		return String.valueOf(randomNum);
 	}
 	
-	public String[] buildCoordinateArrayWithColumn(String startRowOrColumn, String columnStart) {		
+	public String[] buildCoordinateArrayWithColumn(String startRowOrColumn, String columnStart, int size) {		
+		//Build fisrt coordinate
 		String startCoord = columnStart;
 		startCoord = startCoord + startRowOrColumn;
 		
-		String[] columnCoords = new String[3];
+		//Build coordinate array and add first element
+		String[] columnCoords = new String[size];
 		columnCoords[0] = startCoord;
 		startCoord = null;
 		
-		char secondLetter = columnStart.charAt(0);
-		secondLetter = (char)(secondLetter + 1);
-		
-		startCoord = String.valueOf(secondLetter);
-		startCoord = startCoord + startRowOrColumn;
-		columnCoords[1] = startCoord;
-		startCoord = null;
-		
-		char thirdLetter = columnStart.charAt(0);
-		thirdLetter = (char)(thirdLetter + 2);
-		
-		startCoord = String.valueOf(thirdLetter);
-		startCoord = startCoord + startRowOrColumn;
-		columnCoords[2] = startCoord;
+		//Loop through to build remaining coordinates
+		for(int i = 1; i < size; i++) {
+			char nextLetter = columnStart.charAt(0);
+			nextLetter = (char)(nextLetter + i);
+			
+			startCoord = String.valueOf(nextLetter);
+			startCoord = startCoord + startRowOrColumn;
+			columnCoords[i] = startCoord;
+			startCoord = null;
+		}
 		
 		return columnCoords;
 	}
