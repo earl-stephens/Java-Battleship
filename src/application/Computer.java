@@ -24,7 +24,7 @@ public class Computer {
 		} else {
 			//Where in the row is the first coordinate
 			rowStart = pickRowStartingPoint(ship.length);
-			return buildCoordinateArrayWithRow(startRowOrColumn, rowStart);
+			return buildCoordinateArrayWithRow(startRowOrColumn, rowStart, ship.length);
 		}
 	}
 	
@@ -78,32 +78,30 @@ public class Computer {
 		return columnCoords;
 	}
 	
-	public String[] buildCoordinateArrayWithRow(String startRowOrColumn, String rowStart) {	
+	public String[] buildCoordinateArrayWithRow(String startRowOrColumn, String rowStart, int size) {	
+		//Convert startRowOrColumn to a char
 		int adder = Integer.parseInt(startRowOrColumn);
 		char rowLetter = (char)64;
 		rowLetter = (char)(rowLetter + adder);
 		
+		//Build coordinate array and add first element
 		String startCoord = String.valueOf(rowLetter);
 		startCoord = startCoord + rowStart;
 		
-		String[] rowCoords = new String[3];
+		String[] rowCoords = new String[size];
 		rowCoords[0] = startCoord;
 		startCoord = null;
 		
-		char secondLetter = rowStart.charAt(0);
-		secondLetter = (char)(secondLetter + 1);
-		
-		startCoord = String.valueOf(rowLetter);
-		startCoord = startCoord + String.valueOf(secondLetter);
-		rowCoords[1] = startCoord;
-		startCoord = null;
-		
-		char thirdLetter = rowStart.charAt(0);
-		thirdLetter = (char)(thirdLetter + 2);
-		
-		startCoord = String.valueOf(rowLetter);
-		startCoord = startCoord + String.valueOf(thirdLetter);
-		rowCoords[2] = startCoord;
+		//Loop through to build remaining elements
+		for(int i = 1; i < size; i++) {
+			char nextLetter = rowStart.charAt(0);
+			nextLetter = (char)(nextLetter + i);
+			
+			startCoord = String.valueOf(rowLetter);
+			startCoord = startCoord + String.valueOf(nextLetter);
+			rowCoords[i] = startCoord;
+			startCoord = null;
+		}
 		
 		return rowCoords;
 	}

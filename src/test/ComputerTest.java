@@ -105,8 +105,13 @@ class ComputerTest {
 	
 	@Test
 	void testForCreatingCoordinateArrayRowStart() {
-		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("2", "2").length);
-		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("4", "1").length);
+		Ship cruiser = new Ship("Cruiser", 3);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("2", "2", cruiser.length).length);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("4", "1", cruiser.length).length);
+
+		Ship submarine = new Ship("Submarine", 2);
+		Assert.assertEquals(2, computer.buildCoordinateArrayWithRow("2", "2", submarine.length).length);
+		Assert.assertEquals(2, computer.buildCoordinateArrayWithRow("4", "3", submarine.length).length);
 	}
 	
 	@RepeatedTest(10)
