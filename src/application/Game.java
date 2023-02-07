@@ -11,7 +11,7 @@ public class Game {
 		if(startOrQuit == "q") {
 			System.out.println("Thanks for playing.");
 		} else {
-			//placement();
+			//runGame()
 		}
 	}
 	
@@ -25,10 +25,30 @@ public class Game {
 	
 		return output;
 	}
+	
 	/*
-	public void placement() {
-		Ship cruiserComputer = new Ship("Cruiser", 3);
-		computer.placeCruiser();
-	}
+	 * public runGame() {
+	 * 		setUpBoards(boolean)
+	 * 		Turn turn = new turn(computer, player)
+	 * 		do{
+	 * 			turn.computerGuess()
+	 * 			turn.playerGuess()
+	 * 		} while (!anyoneLostYet)
+	 * 		
+	 * 		endGame(turn.winner))
+	 * }
+	 * 
+	 * public setUpBoards(boolean) {
+	 * 		computer.board.valid_placement(computer.placeShip(ship))
+	 * 		computer.board.valid_placement(comppp)
+	 * 		player.placeShip(ship)
+	 * 		player.board.valid_placement(player.placeShip(ship))
+	 * 		player.placeShip(other Ship)
+	 * 		player.board.valid_placement()
+	 * }
+	 * 
+	 * public void endGame(String winner) {
+	 * 		display winner
+	 * 
 	*/
 }
