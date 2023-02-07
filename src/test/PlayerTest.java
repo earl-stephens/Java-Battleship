@@ -21,14 +21,7 @@ class PlayerTest {
 		
 		Assert.assertNotNull(player.board.cells);
 	}
-/*
-	@Test
-	void testForComputerPlacement() {
-		Player player = new Player("Computer");
-		Ship cruiserComputer = new Ship("Cruiser", 3);
-		player.place(cruiser);
+
+		@Test
 		
-		Assert.assertTrue(player.board.valid_placement(cruiserComputer, coordinates))
-	}
-	*/
 }

@@ -8,4 +8,19 @@ public class Player {
 		this.name = name;
 		board = new Board();
 	}
+	
+	public boolean placeShips() {
+		boolean cruiser = false;
+		boolean submarine = false;
+		
+		showPlacementMessages();
+		
+		if(cruiser & submarine) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
 }

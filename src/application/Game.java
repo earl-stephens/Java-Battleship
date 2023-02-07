@@ -11,7 +11,7 @@ public class Game {
 		if(startOrQuit == "q") {
 			System.out.println("Thanks for playing.");
 		} else {
-			//runGame()
+			runGame();
 		}
 	}
 	
@@ -26,6 +26,13 @@ public class Game {
 		return output;
 	}
 	
+	public void runGame() {
+		setUpBoards();
+	}
+	
+	public boolean setUpBoards() {
+		return false;
+	}
 	/*
 	 * public runGame() {
 	 * 		setUpBoards(boolean)
