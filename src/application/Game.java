@@ -3,7 +3,14 @@ package application;
 import java.util.Scanner;
 
 public class Game {
-	Player user = new Player("User");
+	//create ship objects here and pass them to computer and player so
+	//as to use dependency injection
+	Ship playerCruiser = new Ship("Cruiser", 3);
+	Ship playerSubmarine = new Ship("Submarine", 2);
+	Ship computerCruiser = new Ship("Cruiser", 3);
+	Ship computerSubmarine = new Ship("Submarine", 2);
+	
+	Player user = new Player("User", playerCruiser, playerSubmarine);
 	Computer computer = new Computer();
 	
 	public void start() {

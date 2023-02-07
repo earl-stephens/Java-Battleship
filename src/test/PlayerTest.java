@@ -10,18 +10,22 @@ class PlayerTest {
 
 	@Test
 	void testForPlayerObject() {
-		Player player = new Player("User");
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		Player player = new Player("User", cruiser, submarine);
 		
 		Assert.assertNotNull(player);
 	}
 	
 	@Test
 	void testThatPlayerHasABoard() {
-		Player player = new Player("User");
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		Player player = new Player("User", cruiser, submarine);
 		
 		Assert.assertNotNull(player.board.cells);
 	}
 
-		@Test
+		//@Test
 		
 }

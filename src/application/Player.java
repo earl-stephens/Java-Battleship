@@ -6,20 +6,25 @@ public class Player {
 	Ship cruiser;
 	Ship submarine;
 	
-	public Player(String name) {
+	public Player(String name, Ship ship1, Ship ship2) {
 		this.name = name;
 		board = new Board();
-		cruiser = new Ship("Cruiser", 3);
-		submarine = new Ship("Submarine", 2);
+		cruiser = ship1;
+		submarine = ship2;
 	}
 	
 	public boolean placeShips() {
-		boolean cruiser = false;
-		boolean submarine = false;
+		boolean cruiserPlacement = false;
+		boolean submarinePlacement = false;
+		String[] cruiserCoordinates = getCoordinates(cruiser);
+		String[] submarineCoordinates = getCoordinates(submarine);
 		
 		showPlacementMessages();
+		cruiserPlacement = board.valid_placement(cruiser, cruiserCoordinates);
+		board.place(cruiser, cruiserCoordinates);
+		submarinePlacement = board.valid_placement(submarine, submarineCoordinates);
 		
-		if(cruiser & submarine) {
+		if(cruiserPlacement & submarinePlacement) {
 			return true;
 		} else {
 			return false;
@@ -32,11 +37,15 @@ public class Player {
 		System.out.println("The cruiser is 3 spaces long and the submarine is two spaces long.");
 		System.out.println("Lay out the ships horizontally (from left to right) or");
 		System.out.println("Vertically (from to top to bottom).");
-		
-		placeCruiser(cruiser);
 	}
 	
-	public void placeCruiser(Ship ship) {
+	public String[] getCoordinates(Ship ship) {
+		System.out.println("Enter the squares for the " + ship.name + " (" + ship.length + " spaces).");
+		System.out.println("Enter the coordinates in the format 'A1 B2 C3'");
+		System.out.println("(one space between coordinates, no commas)");
+		
+		//check for valid cells
+		//check for valid placement
 		
 	}
 }
