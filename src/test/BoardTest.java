@@ -54,9 +54,11 @@ class BoardTest {
 		Ship destroyer = new Ship("Destroyer", 3);
 		Ship carrier = new Ship("Carrier", 3);
 		Ship hovercraft = new Ship("Hovercraft", 3);
+		Ship frigate = new Ship("Frigate", 3);
+		Ship corvette = new Ship("Corvette", 3);
 		
 		//correct values all around
-		String[] cruiserCoord = {"A1", "A2", "B3"};
+		String[] cruiserCoord = {"A1", "A2", "A3"};
 		
 		//check for wrong length
 		String[] subCoord = {"A1", "A2", "A3"};
@@ -70,11 +72,17 @@ class BoardTest {
 		//check for vertical placement
 		String[] hovercraftCoord = {"D2", "D3", "D4"};
 		
+		//check that non-consecutive parts are the same
+		String[] frigateCoord = {"A1", "A2", "B3"};
+		String[] corvetteCoord = {"A1", "B1", "C2"};
+		
 		Assert.assertTrue(board.valid_placement(cruiser, cruiserCoord));
 		Assert.assertFalse(board.valid_placement(submarine, subCoord));
 		Assert.assertFalse(board.valid_placement(destroyer, destroyerCoord));
 		Assert.assertFalse(board.valid_placement(carrier, carrierCoord));
 		Assert.assertTrue(board.valid_placement(hovercraft, hovercraftCoord));
+		Assert.assertFalse(board.valid_placement(frigate, frigateCoord));
+		Assert.assertFalse(board.valid_placement(corvette, corvetteCoord));
 	}
 	
 	@Test
@@ -198,7 +206,6 @@ class BoardTest {
 
 		Assert.assertFalse(board.noOverlap(subCoord));
 	}
-	 */
 	
 	@Test
 	void testIfNonConsecutiveAllTheSame() {
@@ -216,4 +223,5 @@ class BoardTest {
 		Assert.assertFalse(board.isAllTheSame(board.charToIntArray(destroyer, destroyerCoord)));
 		Assert.assertFalse(board.isAllTheSame(board.getNumberArray(carrier, carrierCoord)));
 	}
+	*/
 }
