@@ -35,7 +35,7 @@ class PlayerTest {
 		Ship submarine = new Ship("Submarine", 2);
 		Player player = new Player("User", cruiser, submarine);
 		
-		String input = "A1 B1 C1";
+		String input = "A1 B1 C2";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		

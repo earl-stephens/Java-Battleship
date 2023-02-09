@@ -66,7 +66,7 @@ public class Board {
 		return letterArray;
 	}
 	
-	private int[] getNumberArray(Ship ship, String[] coordinates) {
+	public int[] getNumberArray(Ship ship, String[] coordinates) {
 		int[] numberArray = new int[coordinates.length];
 		for(int i = 0; i < coordinates.length; i++) {
 			numberArray[i] = Integer.valueOf(coordinates[i].split("")[1]);
@@ -84,7 +84,7 @@ public class Board {
 		return charArray;
 	}
 	
-	private int[] charToIntArray(Ship ship, String[] coordinates) {
+	public int[] charToIntArray(Ship ship, String[] coordinates) {
 		char[] charArray = stringToCharArray(ship, coordinates);
 		int[] unicodeNumberArray = new int[charArray.length];
 		for(int i = 0; i < charArray.length; i++) {
@@ -94,6 +94,9 @@ public class Board {
 	}
 
 	private boolean isConsecutive(int[] testArray) {
+		System.out.println(testArray[0]);
+		System.out.println(testArray[1]);
+		System.out.println(testArray[2]);
 		int min = Arrays.stream(testArray).min().getAsInt();
 		int max = Arrays.stream(testArray).max().getAsInt();
 		if((max - min) + 1 == testArray.length) {
@@ -153,5 +156,12 @@ public class Board {
 		System.out.println(row3);
 		System.out.println(row4);
 		System.out.println(row5);
+	}
+	
+	public boolean isAllTheSame(int[] coordinates) {
+		for(int i = 0; i < coordinates.length; i++) {
+			if(coordinates[i] != coordinates[0]) return false;
+		}
+		return true;
 	}
 }

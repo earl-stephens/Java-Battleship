@@ -62,6 +62,12 @@ public class Player {
 		}
 		
 		placeIsValid = board.valid_placement(cruiser, cruiserCoordinates);
+		System.out.println(placeIsValid);
+		if(!placeIsValid) {
+			System.out.println("Those are invalid coordinates.  Please try again.");
+			placeCruiser(ship);
+		}
+		
 		board.place(cruiser, cruiserCoordinates);
 		return placeIsValid;
 	}

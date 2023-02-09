@@ -56,7 +56,7 @@ class BoardTest {
 		Ship hovercraft = new Ship("Hovercraft", 3);
 		
 		//correct values all around
-		String[] cruiserCoord = {"A1", "A2", "A3"};
+		String[] cruiserCoord = {"A1", "A2", "B3"};
 		
 		//check for wrong length
 		String[] subCoord = {"A1", "A2", "A3"};
@@ -199,4 +199,21 @@ class BoardTest {
 		Assert.assertFalse(board.noOverlap(subCoord));
 	}
 	 */
+	
+	@Test
+	void testIfNonConsecutiveAllTheSame() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 3);
+		Ship destroyer = new Ship("Destroyer", 3);
+		Ship carrier = new Ship("Carrier", 3);
+		String[] cruiserCoord = {"A1", "B1", "C1"};
+		String[] subCoord = {"A1", "B1", "C2"};
+		String[] destroyerCoord = {"A1", "A2", "B3"};
+		String[] carrierCoord = {"B1", "C1", "D2"};
+		
+		Assert.assertTrue(board.isAllTheSame(board.getNumberArray(cruiser, cruiserCoord)));
+		Assert.assertFalse(board.isAllTheSame(board.getNumberArray(submarine, subCoord)));
+		Assert.assertFalse(board.isAllTheSame(board.charToIntArray(destroyer, destroyerCoord)));
+		Assert.assertFalse(board.isAllTheSame(board.getNumberArray(carrier, carrierCoord)));
+	}
 }
