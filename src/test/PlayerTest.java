@@ -41,5 +41,18 @@ class PlayerTest {
 		
 		Assert.assertTrue(player.placeCruiser(cruiser));
 	}
+	
+	@Test
+	void testForSubmarinePlacement() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		Player player = new Player("User", cruiser, submarine);
+		
+		String input = "D3 D4";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Assert.assertTrue(player.placeSubmarine(submarine));
+	}
 
 }

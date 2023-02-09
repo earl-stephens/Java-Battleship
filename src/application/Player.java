@@ -20,12 +20,7 @@ public class Player {
 		boolean submarinePlacement = false;
 		showPlacementMessages();
 		cruiserPlacement = placeCruiser(cruiser);
-
-
-
-		String[] submarineCoordinates = getCoordinates(submarine);
-		submarinePlacement = board.valid_placement(submarine, submarineCoordinates);
-		board.place(submarine, submarineCoordinates);
+		submarinePlacement = placeSubmarine(submarine);
 		
 		if(cruiserPlacement & submarinePlacement) {
 			return true;
@@ -57,17 +52,33 @@ public class Player {
 	
 	public boolean placeCruiser(Ship ship) {
 		boolean placeIsValid = false;
-		String[] cruiserCoordinates = getCoordinates(cruiser);
+		String[] cruiserCoordinates = getCoordinates(ship);
 		
 		for(String coords : cruiserCoordinates) {
 			if(!board.valid_coordinate(coords)) {
-				System.out.println("Those are invalid coordinates.  Please try again.");
+				System.out.println("Those are invalid coordinates.  The coordinates are not on the grid.  Please try again.");
 				placeCruiser(ship);
 			}
 		}
 		
 		placeIsValid = board.valid_placement(cruiser, cruiserCoordinates);
 		board.place(cruiser, cruiserCoordinates);
+		return placeIsValid;
+	}
+	
+	public boolean placeSubmarine(Ship ship) {
+		boolean placeIsValid = false;
+		String[] submarineCoordinates = getCoordinates(ship);
+		
+		for(String coords : submarineCoordinates) {
+			if(!board.valid_coordinate(coords)) {
+				System.out.println("Those are invalid coordinates.  The coordinates are not on the grid.  Please try again.");
+				placeSubmarine(ship);
+			}
+		}
+		
+		placeIsValid = board.valid_placement(submarine, submarineCoordinates);
+		board.place(cruiser, submarineCoordinates);
 		return placeIsValid;
 	}
 }
