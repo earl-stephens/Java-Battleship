@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Scanner;
+
 public class Player {
 	String name;
 	public Board board;
@@ -16,13 +18,14 @@ public class Player {
 	public boolean placeShips() {
 		boolean cruiserPlacement = false;
 		boolean submarinePlacement = false;
-		String[] cruiserCoordinates = getCoordinates(cruiser);
-		String[] submarineCoordinates = getCoordinates(submarine);
-		
 		showPlacementMessages();
-		cruiserPlacement = board.valid_placement(cruiser, cruiserCoordinates);
-		board.place(cruiser, cruiserCoordinates);
+		cruiserPlacement = placeCruiser(cruiser);
+
+
+
+		String[] submarineCoordinates = getCoordinates(submarine);
 		submarinePlacement = board.valid_placement(submarine, submarineCoordinates);
+		board.place(submarine, submarineCoordinates);
 		
 		if(cruiserPlacement & submarinePlacement) {
 			return true;
@@ -44,8 +47,27 @@ public class Player {
 		System.out.println("Enter the coordinates in the format 'A1 B2 C3'");
 		System.out.println("(one space between coordinates, no commas)");
 		
-		//check for valid cells
-		//check for valid placement
+		Scanner scanner = new Scanner(System.in);
+		String[] playerInput = scanner.nextLine().split(" ");
 		
+		scanner.close();
+		
+		return playerInput;
+	}
+	
+	public boolean placeCruiser(Ship ship) {
+		boolean placeIsValid = false;
+		String[] cruiserCoordinates = getCoordinates(cruiser);
+		
+		for(String coords : cruiserCoordinates) {
+			if(!board.valid_coordinate(coords)) {
+				System.out.println("Those are invalid coordinates.  Please try again.");
+				placeCruiser(ship);
+			}
+		}
+		
+		placeIsValid = board.valid_placement(cruiser, cruiserCoordinates);
+		board.place(cruiser, cruiserCoordinates);
+		return placeIsValid;
 	}
 }
