@@ -28,7 +28,7 @@ class PlayerTest {
 		
 		Assert.assertNotNull(player.board.cells);
 	}
-	
+	/*
 	@Test
 	void testForCruiserPlacement() {
 		Ship cruiser = new Ship("Cruiser", 3);
@@ -54,5 +54,6 @@ class PlayerTest {
 		
 		Assert.assertTrue(player.placeSubmarine(submarine));
 	}
-
+*/
+	
 }

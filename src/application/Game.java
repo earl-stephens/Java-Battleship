@@ -9,14 +9,15 @@ public class Game {
 	Ship playerSubmarine = new Ship("Submarine", 2);
 	Ship computerCruiser = new Ship("Cruiser", 3);
 	Ship computerSubmarine = new Ship("Submarine", 2);
+	Scanner scanner = new Scanner(System.in);
 	
 	Player user = new Player("User", playerCruiser, playerSubmarine);
 	Computer computer = new Computer();
 	
 	public void start() {
 		String startOrQuit = mainMenu();
-		if(startOrQuit == "q") {
-			System.out.println("Thanks for playing.");
+		if(startOrQuit.equals("q")) {
+			goodbye();
 		} else {
 			runGame();
 		}
@@ -25,10 +26,8 @@ public class Game {
 	public String mainMenu() {
 		System.out.println("Welcome to Battleship");
 		System.out.println("Enter p to play.  Enter q to quit.");
-		Scanner scanner = new Scanner(System.in);
 		
 		String output = scanner.nextLine();
-		scanner.close();
 	
 		return output;
 	}
@@ -38,7 +37,16 @@ public class Game {
 	}
 	
 	public void setUpBoards() {
-		//computer.board.place(computerCruiser, computer.board.);
+		computer.placeShip(computerCruiser);
+		computer.placeShip(computerSubmarine);
+		user.placeShips();
+		computer.board.render(true);
+		user.board.render(true);
+	}
+	
+	public void goodbye() {
+		System.out.println("Thanks for playing.");	
+		exit();
 	}
 	/*
 	 * public runGame() {
@@ -65,4 +73,9 @@ public class Game {
 	 * 		display winner
 	 * 
 	*/
+
+	private void exit() {
+		scanner.close();
+		
+	}
 }

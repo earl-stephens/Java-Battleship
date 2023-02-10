@@ -1,5 +1,6 @@
 package application;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Player {
@@ -15,18 +16,18 @@ public class Player {
 		submarine = ship2;
 	}
 	
-	public boolean placeShips() {
-		boolean cruiserPlacement = false;
-		boolean submarinePlacement = false;
+	public void placeShips() {
+		//boolean cruiserPlacement = false;
+		//boolean submarinePlacement = false;
 		showPlacementMessages();
-		cruiserPlacement = placeCruiser(cruiser);
-		submarinePlacement = placeSubmarine(submarine);
-		
-		if(cruiserPlacement & submarinePlacement) {
-			return true;
-		} else {
-			return false;
-		}
+		placeCruiser(cruiser);
+		placeSubmarine(submarine);
+		//cruiserPlacement = placeCruiser(cruiser);
+		//submarinePlacement = placeSubmarine(submarine);
+		/*
+		 * if(cruiserPlacement & submarinePlacement) { return true; } else { return
+		 * false; }
+		 */
 	}
 	
 	public void showPlacementMessages() {
@@ -43,11 +44,12 @@ public class Player {
 		System.out.println("(one space between coordinates, no commas)");
 		
 		Scanner scanner = new Scanner(System.in);
-		String[] playerInput = scanner.nextLine().split(" ");
+		String playerInput = scanner.nextLine();
+		String[] playerInputArray = playerInput.split(" ");
 		
-		scanner.close();
+		//scanner.close();
 		
-		return playerInput;
+		return playerInputArray;
 	}
 	
 	public boolean placeCruiser(Ship ship) {
@@ -65,9 +67,9 @@ public class Player {
 		if(!placeIsValid) {
 			System.out.println("Those are invalid coordinates.  Please try again.");
 			placeCruiser(ship);
+		} else {
+			board.place(cruiser, cruiserCoordinates);
 		}
-		
-		board.place(cruiser, cruiserCoordinates);
 		return placeIsValid;
 	}
 	
@@ -83,7 +85,13 @@ public class Player {
 		}
 		
 		placeIsValid = board.valid_placement(submarine, submarineCoordinates);
-		board.place(cruiser, submarineCoordinates);
+		if(!placeIsValid) {
+			System.out.println("Those are invalid coordinates.  Please try again.");
+			placeSubmarine(ship);
+		} else {
+			board.place(submarine, submarineCoordinates);
+		}
+		
 		return placeIsValid;
 	}
 }
