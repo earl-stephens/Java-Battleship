@@ -7,7 +7,21 @@ public class Computer {
 		this.board = new Board();
 	}
 	
-	public String[] placeShip(Ship ship) {
+	public void placeShip(Ship ship) {
+		String[] coordinates = generateCoordinates(ship);
+		boolean placeIsValid = false;
+		
+		for(String coords : coordinates) {
+			if(!board.valid_coordinate(coords)) placeShip(ship);
+		}
+		
+		placeIsValid = board.valid_placement(ship, coordinates);
+		if(!placeIsValid) placeShip(ship);
+		
+		board.place(ship,  coordinates);
+	}
+	
+	public String[] generateCoordinates(Ship ship) {
 		String columnStart;
 		String rowStart;
 		

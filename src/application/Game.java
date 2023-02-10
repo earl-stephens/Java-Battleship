@@ -37,8 +37,8 @@ public class Game {
 		setUpBoards();
 	}
 	
-	public boolean setUpBoards() {
-		return false;
+	public void setUpBoards() {
+		//computer.board.place(computerCruiser, computer.board.);
 	}
 	/*
 	 * public runGame() {

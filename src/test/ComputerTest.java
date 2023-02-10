@@ -28,7 +28,7 @@ class ComputerTest {
 	@Test
 	void testForGettingCoordinates() {
 		Ship cruiser = new Ship("Cruiser", 3);
-		String[] result = computer.placeShip(cruiser);
+		String[] result = computer.generateCoordinates(cruiser);
 		Board board = new Board();
 		
 		Assert.assertEquals(3, result.length);
@@ -117,7 +117,7 @@ class ComputerTest {
 	@RepeatedTest(10)
 	void testPlaceCruiserMethod() {
 		Ship cruiser = new Ship("Cruiser", 3);
-		Assert.assertEquals(3, computer.placeShip(cruiser).length);
+		Assert.assertEquals(3, computer.generateCoordinates(cruiser).length);
 	}
 
 }
