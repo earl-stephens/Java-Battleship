@@ -39,9 +39,20 @@ public class Game {
 	public void setUpBoards() {
 		computer.placeShip(computerCruiser);
 		computer.placeShip(computerSubmarine);
+		showPlacementMessages();
 		user.placeShips();
-		computer.board.render(true);
 		user.board.render(true);
+	}
+	
+	
+	private void showPlacementMessages() {
+		System.out.println("I have laid out my ships on the grid.");
+		computer.board.render(true);
+		System.out.println();
+		System.out.println("You now need to lay out your two ships.");
+		System.out.println("The cruiser is 3 spaces long and the submarine is two spaces long.");
+		System.out.println("Lay out the ships horizontally (from left to right) or");
+		System.out.println("Vertically (from to top to bottom).");
 	}
 
 	/*

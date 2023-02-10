@@ -17,19 +17,11 @@ public class Player {
 	}
 	
 	public void placeShips() {
-		showPlacementMessages();
+		//showPlacementMessages();
 		placeCruiser(cruiser);
 		placeSubmarine(submarine);
 	}
-	
-	private void showPlacementMessages() {
-		System.out.println("I have laid out my ships on the grid.");
-		System.out.println("You now need to lay out your two ships.");
-		System.out.println("The cruiser is 3 spaces long and the submarine is two spaces long.");
-		System.out.println("Lay out the ships horizontally (from left to right) or");
-		System.out.println("Vertically (from to top to bottom).");
-	}
-	
+
 	private String[] getCoordinates(Ship ship) {
 		System.out.println("Enter the squares for the " + ship.name + " (" + ship.length + " spaces).");
 		System.out.println("Enter the coordinates in the format 'A1 B2 C3'");
