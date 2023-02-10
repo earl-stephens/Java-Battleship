@@ -7,20 +7,38 @@ public class Computer {
 		this.board = new Board();
 	}
 	
-	public String[] placeCruiser() {
+	public void placeShip(Ship ship) {
+		String[] coordinates = generateCoordinates(ship);
+		boolean placeIsValid = false;
+		
+		for(String coords : coordinates) {
+			if(!board.valid_coordinate(coords)) placeShip(ship);
+		}
+		
+		placeIsValid = board.valid_placement(ship, coordinates);
+		if(!placeIsValid) placeShip(ship);
+		
+		board.place(ship,  coordinates);
+	}
+	
+	public String[] generateCoordinates(Ship ship) {
 		String columnStart;
 		String rowStart;
 		
+		//Will ship be placed horizontally or vertically
 		String rowOrColumn = pickRowOrColumn();
 		
-		String startRowOrColumn = pickWhichRowOrColumn();
+		//Which row or column will the ship be in
+		String startRowOrColumn = pickWhichRowOrColumn(ship.length);
 		
 		if(rowOrColumn == "C") {
-			columnStart = pickColumnStartingPoint(3);
-			return buildCoordinateArrayWithColumn(startRowOrColumn,columnStart);
+			//Where in the column is the first coordinate
+			columnStart = pickColumnStartingPoint(ship.length);
+			return buildCoordinateArrayWithColumn(startRowOrColumn,columnStart, ship.length);
 		} else {
-			rowStart = pickRowStartingPoint(3);
-			return buildCoordinateArrayWithRow(startRowOrColumn, rowStart);
+			//Where in the row is the first coordinate
+			rowStart = pickRowStartingPoint(ship.length);
+			return buildCoordinateArrayWithRow(startRowOrColumn, rowStart, ship.length);
 		}
 	}
 	
@@ -33,8 +51,9 @@ public class Computer {
 		}
 	}
 	
-	public String pickWhichRowOrColumn() {
-		int randomNum = (int)((Math.random() * 4) +1);
+	public String pickWhichRowOrColumn(int size) {
+		int max = (int)Math.sqrt(board.cells.size()) - size;
+		int randomNum = (int)((Math.random() * max) +1);
 		return String.valueOf(randomNum);
 	}
 	
@@ -49,58 +68,54 @@ public class Computer {
 		return String.valueOf(randomNum);
 	}
 	
-	public String[] buildCoordinateArrayWithColumn(String startRowOrColumn, String columnStart) {		
+	public String[] buildCoordinateArrayWithColumn(String startRowOrColumn, String columnStart, int size) {		
+		//Build fisrt coordinate
 		String startCoord = columnStart;
 		startCoord = startCoord + startRowOrColumn;
 		
-		String[] columnCoords = new String[3];
+		//Build coordinate array and add first element
+		String[] columnCoords = new String[size];
 		columnCoords[0] = startCoord;
 		startCoord = null;
 		
-		char secondLetter = columnStart.charAt(0);
-		secondLetter = (char)(secondLetter + 1);
-		
-		startCoord = String.valueOf(secondLetter);
-		startCoord = startCoord + startRowOrColumn;
-		columnCoords[1] = startCoord;
-		startCoord = null;
-		
-		char thirdLetter = columnStart.charAt(0);
-		thirdLetter = (char)(thirdLetter + 2);
-		
-		startCoord = String.valueOf(thirdLetter);
-		startCoord = startCoord + startRowOrColumn;
-		columnCoords[2] = startCoord;
+		//Loop through to build remaining coordinates
+		for(int i = 1; i < size; i++) {
+			char nextLetter = columnStart.charAt(0);
+			nextLetter = (char)(nextLetter + i);
+			
+			startCoord = String.valueOf(nextLetter);
+			startCoord = startCoord + startRowOrColumn;
+			columnCoords[i] = startCoord;
+			startCoord = null;
+		}
 		
 		return columnCoords;
 	}
 	
-	public String[] buildCoordinateArrayWithRow(String startRowOrColumn, String rowStart) {	
+	public String[] buildCoordinateArrayWithRow(String startRowOrColumn, String rowStart, int size) {	
+		//Convert startRowOrColumn to a char
 		int adder = Integer.parseInt(startRowOrColumn);
 		char rowLetter = (char)64;
 		rowLetter = (char)(rowLetter + adder);
 		
+		//Build coordinate array and add first element
 		String startCoord = String.valueOf(rowLetter);
 		startCoord = startCoord + rowStart;
 		
-		String[] rowCoords = new String[3];
+		String[] rowCoords = new String[size];
 		rowCoords[0] = startCoord;
 		startCoord = null;
 		
-		char secondLetter = rowStart.charAt(0);
-		secondLetter = (char)(secondLetter + 1);
-		
-		startCoord = String.valueOf(rowLetter);
-		startCoord = startCoord + String.valueOf(secondLetter);
-		rowCoords[1] = startCoord;
-		startCoord = null;
-		
-		char thirdLetter = rowStart.charAt(0);
-		thirdLetter = (char)(thirdLetter + 2);
-		
-		startCoord = String.valueOf(rowLetter);
-		startCoord = startCoord + String.valueOf(thirdLetter);
-		rowCoords[2] = startCoord;
+		//Loop through to build remaining elements
+		for(int i = 1; i < size; i++) {
+			char nextLetter = rowStart.charAt(0);
+			nextLetter = (char)(nextLetter + i);
+			
+			startCoord = String.valueOf(rowLetter);
+			startCoord = startCoord + String.valueOf(nextLetter);
+			rowCoords[i] = startCoord;
+			startCoord = null;
+		}
 		
 		return rowCoords;
 	}

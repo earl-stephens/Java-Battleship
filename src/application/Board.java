@@ -51,11 +51,15 @@ public class Board {
 	
 	private boolean validateConsecutive(Ship ship, String[] coordinates) {
 		boolean numCheck = isConsecutive(getNumberArray(ship, coordinates));
+		boolean nonConsecutiveNumbersTheSame = isAllTheSame(getNumberArray(ship, coordinates));
 		boolean letterCheck = isConsecutive(charToIntArray(ship, coordinates));
-		if(numCheck ^ letterCheck) {
+		boolean nonConsecutiveLettersTheSame = isAllTheSame(charToIntArray(ship,coordinates));
+		if(letterCheck & !numCheck & nonConsecutiveNumbersTheSame) {
 			return true;
-		}
-		return false;
+		} else if(numCheck & !letterCheck & nonConsecutiveLettersTheSame) {
+			return true;
+		} else
+			return false;
 	}
 	
 	private String[] getLetterArray(Ship ship, String[] coordinates) {
@@ -153,5 +157,12 @@ public class Board {
 		System.out.println(row3);
 		System.out.println(row4);
 		System.out.println(row5);
+	}
+	
+	private boolean isAllTheSame(int[] coordinates) {
+		for(int i = 0; i < coordinates.length; i++) {
+			if(coordinates[i] != coordinates[0]) return false;
+		}
+		return true;
 	}
 }

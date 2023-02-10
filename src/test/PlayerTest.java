@@ -3,6 +3,9 @@ import application.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -10,25 +13,47 @@ class PlayerTest {
 
 	@Test
 	void testForPlayerObject() {
-		Player player = new Player("User");
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		Player player = new Player("User", cruiser, submarine);
 		
 		Assert.assertNotNull(player);
 	}
 	
 	@Test
 	void testThatPlayerHasABoard() {
-		Player player = new Player("User");
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		Player player = new Player("User", cruiser, submarine);
 		
 		Assert.assertNotNull(player.board.cells);
 	}
-/*
+	/*
 	@Test
-	void testForComputerPlacement() {
-		Player player = new Player("Computer");
-		Ship cruiserComputer = new Ship("Cruiser", 3);
-		player.place(cruiser);
+	void testForCruiserPlacement() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship cruiser2 = new Ship("Cruiser2", 3);
+		Player player = new Player("User", cruiser, cruiser2);
 		
-		Assert.assertTrue(player.board.valid_placement(cruiserComputer, coordinates))
+		String input = "A1 B1 C1";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Assert.assertTrue(player.placeCruiser(cruiser));
 	}
-	*/
+	
+	@Test
+	void testForSubmarinePlacement() {
+		Ship cruiser = new Ship("Cruiser", 3);
+		Ship submarine = new Ship("Submarine", 2);
+		Player player = new Player("User", cruiser, submarine);
+		
+		String input = "D3 D4";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Assert.assertTrue(player.placeSubmarine(submarine));
+	}
+*/
+	
 }

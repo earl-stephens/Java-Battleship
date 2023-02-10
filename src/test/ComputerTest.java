@@ -25,10 +25,10 @@ class ComputerTest {
 		Assert.assertNotNull(computer.board.cells);
 	}
 	
-	//@Disabled
 	@Test
 	void testForGettingCoordinates() {
-		String[] result = computer.placeCruiser();
+		Ship cruiser = new Ship("Cruiser", 3);
+		String[] result = computer.generateCoordinates(cruiser);
 		Board board = new Board();
 		
 		Assert.assertEquals(3, result.length);
@@ -44,10 +44,11 @@ class ComputerTest {
 		
 		Assert.assertTrue("R".equals(output) || "C".equals(output));
 	}
-	//@Disabled
+
 	@RepeatedTest(5)
 	void testForPickingWhichRowOrColumn() {
-		String output = computer.pickWhichRowOrColumn();
+		Ship cruiser = new Ship("Cruiser", 3);
+		String output = computer.pickWhichRowOrColumn(cruiser.length);
 		List<String> expected = new ArrayList<String>();
 		expected.add("1");
 		expected.add("2");
@@ -57,7 +58,7 @@ class ComputerTest {
 		
 		Assert.assertTrue(check);
 	}
-	//@Disabled
+
 	@RepeatedTest(5)
 	void testForPickingRowStartingPoint() {
 		String output = computer.pickRowStartingPoint(3);
@@ -74,7 +75,7 @@ class ComputerTest {
 		check = expected.contains(output);
 		Assert.assertTrue(check);
 	}
-	//@Disabled
+
 	@RepeatedTest(5)
 	void testForPickingColumnStartingPoint() {
 		String output = computer.pickColumnStartingPoint(3);
@@ -93,19 +94,30 @@ class ComputerTest {
 	
 	@Test
 	void testForCreatingCoordinateArrayColumnStart() {
-		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("3", "B").length);
-		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("1", "A").length);
+		Ship cruiser = new Ship("Cruiser", 3);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("3", "B", cruiser.length).length);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithColumn("1", "A", cruiser.length).length);
+		
+		Ship submarine = new Ship("Submarine", 2);
+		Assert.assertEquals(2, computer.buildCoordinateArrayWithColumn("3", "B", submarine.length).length);
+		Assert.assertEquals(2, computer.buildCoordinateArrayWithColumn("4", "C", submarine.length).length);
 	}
 	
 	@Test
 	void testForCreatingCoordinateArrayRowStart() {
-		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("2", "2").length);
-		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("4", "1").length);
+		Ship cruiser = new Ship("Cruiser", 3);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("2", "2", cruiser.length).length);
+		Assert.assertEquals(3, computer.buildCoordinateArrayWithRow("4", "1", cruiser.length).length);
+
+		Ship submarine = new Ship("Submarine", 2);
+		Assert.assertEquals(2, computer.buildCoordinateArrayWithRow("2", "2", submarine.length).length);
+		Assert.assertEquals(2, computer.buildCoordinateArrayWithRow("4", "3", submarine.length).length);
 	}
 	
 	@RepeatedTest(10)
 	void testPlaceCruiserMethod() {
-		Assert.assertEquals(3, computer.placeCruiser().length);
+		Ship cruiser = new Ship("Cruiser", 3);
+		Assert.assertEquals(3, computer.generateCoordinates(cruiser).length);
 	}
 
 }

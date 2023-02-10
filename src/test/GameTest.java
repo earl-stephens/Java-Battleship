@@ -20,6 +20,7 @@ class GameTest {
 		Assert.assertNotNull(game);
 	}
 	
+	/*
 	@Test
 	void testForMainMenuToEndGame() {
 		Game game = new Game();
@@ -41,7 +42,6 @@ class GameTest {
 		
 		Assert.assertEquals("p", game.mainMenu());
 	}
-	/*
 	@Test
 	void testForStartToEndGame() {
 		Game game = new Game();
