@@ -19,6 +19,7 @@ public class Player {
 	public void placeShips() {
 		//showPlacementMessages();
 		placeCruiser(cruiser);
+		board.render(true);
 		placeSubmarine(submarine);
 	}
 
