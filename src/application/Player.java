@@ -1,6 +1,5 @@
 package application;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Player {
@@ -17,7 +16,6 @@ public class Player {
 	}
 	
 	public void placeShips() {
-		//showPlacementMessages();
 		placeCruiser(cruiser);
 		board.render(true);
 		placeSubmarine(submarine);
