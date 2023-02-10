@@ -34,6 +34,7 @@ public class Game {
 	
 	public void runGame() {
 		setUpBoards();
+		Turn turn = new Turn(user, computer);
 	}
 	
 	public void setUpBoards() {
