@@ -17,7 +17,7 @@ public class Game {
 	public void start() {
 		String startOrQuit = mainMenu();
 		if(startOrQuit.equals("q")) {
-			goodbye();
+			exit();
 		} else {
 			runGame();
 		}
@@ -43,11 +43,7 @@ public class Game {
 		computer.board.render(true);
 		user.board.render(true);
 	}
-	
-	public void goodbye() {
-		System.out.println("Thanks for playing.");	
-		exit();
-	}
+
 	/*
 	 * public runGame() {
 	 * 		setUpBoards(boolean)
@@ -75,6 +71,7 @@ public class Game {
 	*/
 
 	private void exit() {
+		System.out.println("Thanks for playing.");	
 		scanner.close();
 		
 	}
