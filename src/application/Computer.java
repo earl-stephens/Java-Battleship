@@ -2,9 +2,13 @@ package application;
 
 public class Computer {
 	public Board board;
+	public Ship ship1;
+	public Ship ship2;
 	
-	public Computer() {
+	public Computer(Ship ship1, Ship ship2) {
 		this.board = new Board();
+		this.ship1 = ship1;
+		this.ship2 = ship2;
 	}
 	
 	public void placeShip(Ship ship) {

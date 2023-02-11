@@ -11,7 +11,9 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 class ComputerTest {
-	private Computer computer = new Computer();
+	Ship computerCruiser = new Ship("Cruiser", 3);
+	Ship computerSubmarine = new Ship("Submarine", 2);
+	private Computer computer = new Computer(computerCruiser, computerSubmarine);
 	
 	@Test
 	void testForComputerObject() {
