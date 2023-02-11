@@ -45,7 +45,6 @@ class TurnTest {
 		expected.add("D3");
 		expected.add("D4");
 		
-		System.out.println(output);
 		boolean check = expected.contains(output);
 		
 		Assert.assertTrue(check);

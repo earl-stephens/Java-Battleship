@@ -32,8 +32,8 @@ public class Cell {
 		if(fired_upon == false & empty() == false & showArgument) {
 			return "S";
 		}
-		if(fired_upon & empty() == false) {
-			if(ship != null & ship.sunk()) return "X";
+		if(fired_upon & !empty()) {
+			if(ship.sunk) return "X";
 		}
 		if(fired_upon & empty() == false) {
 			return "H";

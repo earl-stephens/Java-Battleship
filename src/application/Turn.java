@@ -64,6 +64,7 @@ public class Turn {
 	private void displayTurnResults(String playerCoordinate, String computerCoordinate) {
 		System.out.println("Your shot on " + playerCoordinate + playerResult(playerCoordinate));
 		System.out.println("My shot on " + computerCoordinate + computerResult(computerCoordinate));
+		System.out.println();
 	}
 	
 	private String playerResult(String playerCoordinate) {
@@ -101,11 +102,15 @@ public class Turn {
 	}
 	
 	private void checkForWinner() {
-		if(player.cruiser.sunk() & player.submarine.sunk()) {
+		player.cruiser.sunk();
+		player.submarine.sunk();
+		if(player.cruiser.sunk & player.submarine.sunk) {
 			isThereAWinner = true;
 			winner = "Computer";
 		}
-		if(computer.ship1.sunk() & computer.ship2.sunk()) {
+		computer.ship1.sunk();
+		computer.ship2.sunk();
+		if(computer.ship1.sunk & computer.ship2.sunk) {
 			isThereAWinner = true;
 			winner = "Player";
 		}
