@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class GameTest {
@@ -19,7 +20,14 @@ class GameTest {
 		
 		Assert.assertNotNull(game);
 	}
-	
+	@Disabled
+	//@Test
+	void testForAWinner() {
+		Game game = new Game();
+		game.turn.winner = "User";
+		
+		
+	}
 	/*
 	@Test
 	void testForMainMenuToEndGame() {

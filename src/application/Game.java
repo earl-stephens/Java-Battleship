@@ -10,9 +10,9 @@ public class Game {
 	Ship computerCruiser = new Ship("Cruiser", 3);
 	Ship computerSubmarine = new Ship("Submarine", 2);
 	Scanner scanner = new Scanner(System.in);
-	
 	Player user = new Player("User", playerCruiser, playerSubmarine);
 	Computer computer = new Computer();
+	public Turn turn = new Turn(user, computer);	
 	
 	public void start() {
 		String startOrQuit = mainMenu();
@@ -34,7 +34,10 @@ public class Game {
 	
 	public void runGame() {
 		setUpBoards();
-		Turn turn = new Turn(user, computer);
+		do {
+			turn.takeTurn();
+		} while (!turn.isThereAWinner);
+		
 	}
 	
 	public void setUpBoards() {
