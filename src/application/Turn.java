@@ -18,6 +18,7 @@ public class Turn {
 		System.out.println("Enter the coordinate for your shot: ");
 		String playerCoordinate = getPlayerCoordinate();
 		updatePlayerShot(playerCoordinate);
+		String computerCoordinate = getComputerCoordinate();
 	}
 	
 	private void displayBoards() {
@@ -40,5 +41,16 @@ public class Turn {
 	
 	private void updatePlayerShot(String playerCoordinate) {
 		computer.board.cells.get(playerCoordinate).fire_upon();
+	}
+	
+	public String getComputerCoordinate() {
+		int max = (int)Math.sqrt(computer.board.cells.size());
+		char randomLetter = (char)(Math.random() * ((max + 65) - 65) + 65);
+		String letter = String.valueOf(randomLetter);
+
+		int randomNumber = (int)(Math.random() * (max - 1) + 1);
+		String number = String.valueOf(randomNumber);
+		
+		return letter + number;
 	}
 }
