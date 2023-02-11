@@ -19,6 +19,8 @@ public class Turn {
 		String playerCoordinate = getPlayerCoordinate();
 		updatePlayerShot(playerCoordinate);
 		String computerCoordinate = getComputerCoordinate();
+		updateComputerShot(computerCoordinate);
+		displayTurnResults(playerCoordinate, computerCoordinate);
 	}
 	
 	private void displayBoards() {
@@ -52,5 +54,30 @@ public class Turn {
 		String number = String.valueOf(randomNumber);
 		
 		return letter + number;
+	}
+	
+	private void updateComputerShot(String computerCoordinate) {
+		player.board.cells.get(computerCoordinate).fire_upon();
+	}
+	
+	private void displayTurnResults(String playerCoordinate, String computerCoordinate) {
+		System.out.println("Your shot on " + playerCoordinate + playerResult(playerCoordinate));
+	}
+	
+	private String playerResult(String playerCoordinate) {
+		String output = null;
+		String result = computer.board.cells.get(playerCoordinate).render(false);
+		switch(result) {
+		case "M":
+			output = " was a miss.";
+			break;
+		case "H":
+			output = " was a hit.";
+			break;
+		case "X":
+			output = " sunk the enemy ship!";
+			break;
+			}
+		return output;
 	}
 }
