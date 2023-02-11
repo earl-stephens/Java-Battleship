@@ -13,7 +13,9 @@ import org.junit.jupiter.api.Test;
 class TurnTest {
 	Ship playerCruiser = new Ship("Cruiser", 3);
 	Ship playerSubmarine = new Ship("Submarine", 2);
-	Computer computer = new Computer();
+	Ship computerCruiser = new Ship("Cruiser", 3);
+	Ship computerSubmarine = new Ship("Submarine", 2);
+	Computer computer = new Computer(computerCruiser, computerSubmarine);
 	Player player = new Player("John Doe", playerCruiser, playerSubmarine);
 	Turn turn = new Turn(player, computer);
 	

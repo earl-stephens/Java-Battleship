@@ -21,13 +21,14 @@ public class Turn {
 		String computerCoordinate = getComputerCoordinate();
 		updateComputerShot(computerCoordinate);
 		displayTurnResults(playerCoordinate, computerCoordinate);
+		checkForWinner();
 	}
 	
 	private void displayBoards() {
 		System.out.println("=====COMPUTER BOARD=====");
-		System.out.println(computer.board.render(false));
+		computer.board.render(false);
 		System.out.println("=====PLAYER BOARD=====");
-		System.out.println(player.board.render(true));
+		player.board.render(true);
 	}
 	
 	private String getPlayerCoordinate() {
@@ -62,6 +63,7 @@ public class Turn {
 	
 	private void displayTurnResults(String playerCoordinate, String computerCoordinate) {
 		System.out.println("Your shot on " + playerCoordinate + playerResult(playerCoordinate));
+		System.out.println("My shot on " + computerCoordinate + computerResult(computerCoordinate));
 	}
 	
 	private String playerResult(String playerCoordinate) {
@@ -79,5 +81,33 @@ public class Turn {
 			break;
 			}
 		return output;
+	}
+	
+	private String computerResult(String computerCoordinate) {
+		String output = null;
+		String result = player.board.cells.get(computerCoordinate).render(false);
+		switch(result) {
+		case "M":
+			output = " was a miss.";
+			break;
+		case "H":
+			output = " was a hit.";
+			break;
+		case "X":
+			output = " sunk the enemy ship!";
+			break;
+		}
+		return output;
+	}
+	
+	private void checkForWinner() {
+		if(player.cruiser.sunk() & player.submarine.sunk()) {
+			isThereAWinner = true;
+			winner = "Computer";
+		}
+		if(computer.ship1.sunk() & computer.ship2.sunk()) {
+			isThereAWinner = true;
+			winner = "Player";
+		}
 	}
 }
