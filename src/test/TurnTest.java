@@ -3,6 +3,8 @@ import application.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,5 +50,21 @@ class TurnTest {
 		boolean check = expected.contains(output);
 		
 		Assert.assertTrue(check);
+	}
+	
+	@Test
+	void testForDisplayingBoardMessage() {
+		String expected = "D . . . .";
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream output = new PrintStream(baos);
+		System.setOut(output);
+		
+		turn.displayBoards();
+		
+		String[] lines = baos.toString().split(System.lineSeparator());
+		String actual = lines[lines.length - 1];
+		System.out.println(actual);
+		
+		Assert.assertEquals(expected, actual);
 	}
 }

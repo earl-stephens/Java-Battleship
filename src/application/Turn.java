@@ -24,7 +24,7 @@ public class Turn {
 		checkForWinner();
 	}
 	
-	private void displayBoards() {
+	public void displayBoards() {
 		System.out.println("=====COMPUTER BOARD=====");
 		computer.board.render(false);
 		System.out.println("=====PLAYER BOARD=====");
