@@ -66,7 +66,8 @@ public class Game {
 			System.out.println("You won!");
 		}
 		
-		exit();
+		//exit();
+		start();
 	}
 
 	private void exit() {
