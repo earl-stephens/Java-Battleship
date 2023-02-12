@@ -4,6 +4,7 @@ public class Ship {
 	public String name;
 	public int length;
 	public int health;
+	public boolean sunk = false;
 	
 	public Ship(String name, int length) {
 		this.name = name;
@@ -13,7 +14,8 @@ public class Ship {
 	
 	public boolean sunk() {
 		if(health == 0) {
-		return true;
+			sunk = true;
+			return true;
 		}
 		return false;
 	}

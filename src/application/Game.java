@@ -66,25 +66,9 @@ public class Game {
 			System.out.println("You won!");
 		}
 		
-		exit();
+		//exit();
+		start();
 	}
-
-	/*
-	 * public runGame() {
-	 * 		setUpBoards(boolean)
-	 * 		Turn turn = new turn(computer, player)
-	 * 		do{
-	 * 			turn.computerGuess()
-	 * 			turn.playerGuess()
-	 * 		} while (!anyoneLostYet)
-	 * 		
-	 * 		endGame(turn.winner))
-	 * }
-	 * 
-	 * public void endGame(String winner) {
-	 * 		display winner
-	 * 
-	*/
 
 	private void exit() {
 		System.out.println("Thanks for playing.");	

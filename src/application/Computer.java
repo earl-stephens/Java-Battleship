@@ -1,9 +1,15 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Computer {
 	public Board board;
 	public Ship ship1;
 	public Ship ship2;
+	//ArrayList needed for maintaining state with recursive placeShip()
+	public ArrayList<String> coordinateArray = new ArrayList<>();
 	
 	public Computer(Ship ship1, Ship ship2) {
 		this.board = new Board();
@@ -13,16 +19,25 @@ public class Computer {
 	
 	public void placeShip(Ship ship) {
 		String[] coordinates = generateCoordinates(ship);
+		Collections.addAll(coordinateArray, coordinates);
 		boolean placeIsValid = false;
 		
 		for(String coords : coordinates) {
-			if(!board.valid_coordinate(coords)) placeShip(ship);
+			if(!board.valid_coordinate(coords)) {
+				coordinateArray.clear();
+				placeShip(ship);
+			}
 		}
 		
 		placeIsValid = board.valid_placement(ship, coordinates);
-		if(!placeIsValid) placeShip(ship);
+		if(!placeIsValid) {
+			coordinateArray.clear();
+			placeShip(ship);
+		}
 		
-		board.place(ship,  coordinates);
+		String[] finalCoordinates = coordinateArray.toArray(new String[coordinateArray.size()]);
+		board.place(ship, finalCoordinates);
+		coordinateArray.clear();
 	}
 	
 	public String[] generateCoordinates(Ship ship) {

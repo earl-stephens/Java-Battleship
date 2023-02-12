@@ -4,7 +4,9 @@ import application.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -28,16 +30,14 @@ class PlayerTest {
 		
 		Assert.assertNotNull(player.board.cells);
 	}
-	/*
+	
 	@Test
 	void testForCruiserPlacement() {
 		Ship cruiser = new Ship("Cruiser", 3);
 		Ship cruiser2 = new Ship("Cruiser2", 3);
 		Player player = new Player("User", cruiser, cruiser2);
 		
-		String input = "A1 B1 C1";
-		InputStream in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
+		System.out.println("Enter valid coordinates");
 		
 		Assert.assertTrue(player.placeCruiser(cruiser));
 	}
@@ -48,12 +48,9 @@ class PlayerTest {
 		Ship submarine = new Ship("Submarine", 2);
 		Player player = new Player("User", cruiser, submarine);
 		
-		String input = "D3 D4";
-		InputStream in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
+		System.out.println("Enter valid coordinates");
 		
 		Assert.assertTrue(player.placeSubmarine(submarine));
 	}
-*/
 	
 }

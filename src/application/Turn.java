@@ -1,12 +1,17 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Turn {
 	public Player player;
 	public Computer computer;
 	public String winner;
 	public boolean isThereAWinner = false;
+	private ArrayList<String> coordinateArray = new ArrayList<>();
+	private Set<String> firedOnCoordinates = new HashSet<String>();
 	
 	public Turn(Player player, Computer computer) {
 		this.player = player;
@@ -24,26 +29,33 @@ public class Turn {
 		checkForWinner();
 	}
 	
-	private void displayBoards() {
+	public void displayBoards() {
 		System.out.println("=====COMPUTER BOARD=====");
 		computer.board.render(false);
 		System.out.println("=====PLAYER BOARD=====");
 		player.board.render(true);
 	}
 	
-	private String getPlayerCoordinate() {
+	public String getPlayerCoordinate() {
 		String playerCoordinate;
 		Scanner scanner = new Scanner(System.in);
 		playerCoordinate = scanner.nextLine();
+		coordinateArray.add(playerCoordinate);
+		
 		if(!player.board.valid_coordinate(playerCoordinate)) {
 			System.out.println("Please enter a valid coordinate: ");
 			getPlayerCoordinate();
 		}
-		return playerCoordinate;
-	}
-	
-	private void updatePlayerShot(String playerCoordinate) {
-		computer.board.cells.get(playerCoordinate).fire_upon();
+		
+		if(firedOnCoordinates.contains(playerCoordinate)) {
+			System.out.println("You have already fired on that coordinate.");
+			System.out.println("Please select another coordinate.");
+			getPlayerCoordinate();
+		}
+		
+		String last = coordinateArray.get(coordinateArray.size() - 1);
+		firedOnCoordinates.add(last);
+		return last;
 	}
 	
 	public String getComputerCoordinate() {
@@ -57,35 +69,32 @@ public class Turn {
 		return letter + number;
 	}
 	
-	private void updateComputerShot(String computerCoordinate) {
+	public void updatePlayerShot(String playerCoordinate) {
+		computer.board.cells.get(playerCoordinate).fire_upon();
+	}
+	
+	public void updateComputerShot(String computerCoordinate) {
 		player.board.cells.get(computerCoordinate).fire_upon();
 	}
 	
 	private void displayTurnResults(String playerCoordinate, String computerCoordinate) {
 		System.out.println("Your shot on " + playerCoordinate + playerResult(playerCoordinate));
 		System.out.println("My shot on " + computerCoordinate + computerResult(computerCoordinate));
+		System.out.println();
 	}
 	
-	private String playerResult(String playerCoordinate) {
-		String output = null;
+	public String playerResult(String playerCoordinate) {
 		String result = computer.board.cells.get(playerCoordinate).render(false);
-		switch(result) {
-		case "M":
-			output = " was a miss.";
-			break;
-		case "H":
-			output = " was a hit.";
-			break;
-		case "X":
-			output = " sunk the enemy ship!";
-			break;
-			}
-		return output;
+		return resultDecisionTree(result);
 	}
 	
-	private String computerResult(String computerCoordinate) {
-		String output = null;
+	public String computerResult(String computerCoordinate) {
 		String result = player.board.cells.get(computerCoordinate).render(false);
+		return resultDecisionTree(result);
+	}
+	
+	private String resultDecisionTree(String result) {
+		String output = null;
 		switch(result) {
 		case "M":
 			output = " was a miss.";
@@ -101,11 +110,15 @@ public class Turn {
 	}
 	
 	private void checkForWinner() {
-		if(player.cruiser.sunk() & player.submarine.sunk()) {
+		player.cruiser.sunk();
+		player.submarine.sunk();
+		if(player.cruiser.sunk & player.submarine.sunk) {
 			isThereAWinner = true;
 			winner = "Computer";
 		}
-		if(computer.ship1.sunk() & computer.ship2.sunk()) {
+		computer.ship1.sunk();
+		computer.ship2.sunk();
+		if(computer.ship1.sunk & computer.ship2.sunk) {
 			isThereAWinner = true;
 			winner = "Player";
 		}

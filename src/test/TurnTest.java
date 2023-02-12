@@ -3,6 +3,8 @@ import application.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,9 +47,65 @@ class TurnTest {
 		expected.add("D3");
 		expected.add("D4");
 		
-		System.out.println(output);
 		boolean check = expected.contains(output);
 		
 		Assert.assertTrue(check);
+	}
+	
+	@Test
+	void testForDisplayingBoardMessage() {
+		String expected = "D . . . .";
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream output = new PrintStream(baos);
+		System.setOut(output);
+		
+		turn.displayBoards();
+		
+		String[] lines = baos.toString().split(System.lineSeparator());
+		String actual = lines[lines.length - 1];
+		System.out.println(actual);
+		
+		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	void testForGettingPlayerCoordinate() {
+		System.out.println("Enter D2");
+
+		Assert.assertEquals("D2", turn.getPlayerCoordinate());
+	}
+	
+	@Test
+	void testForPlayerResult() {
+		turn.computer.board.cells.get("A1").place_ship(computerCruiser);
+		turn.computer.board.cells.get("B1").place_ship(computerCruiser);
+		turn.computer.board.cells.get("C1").place_ship(computerCruiser);
+		turn.updatePlayerShot("A1");
+		turn.updatePlayerShot("D1");
+		
+		Assert.assertEquals(" was a hit.", turn.playerResult("A1"));
+		Assert.assertEquals(" was a miss.", turn.playerResult("D1"));
+		
+		turn.updatePlayerShot("B1");
+		turn.updatePlayerShot("C1");
+		Assert.assertEquals(" sunk the enemy ship!", turn.playerResult("C1"));
+		
+	}
+	
+	@Test
+	void testForComputerResult() {
+		turn.player.board.cells.get("A1").place_ship(playerCruiser);
+		turn.player.board.cells.get("B1").place_ship(playerCruiser);
+		turn.player.board.cells.get("C1").place_ship(playerCruiser);
+		turn.updateComputerShot("A1");
+		turn.updateComputerShot("D1");
+		
+		Assert.assertEquals(" was a hit.", turn.computerResult("A1"));
+		Assert.assertEquals(" was a miss.", turn.computerResult("D1"));
+		
+		turn.updateComputerShot("B1");
+		turn.updateComputerShot("C1");
+		Assert.assertEquals(" sunk the enemy ship!", turn.computerResult("C1"));
+		
 	}
 }
