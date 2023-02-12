@@ -33,7 +33,7 @@ public class Cell {
 			return "S";
 		}
 		if(fired_upon & !empty()) {
-			if(ship.sunk) return "X";
+			if(ship.sunk()) return "X";
 		}
 		if(fired_upon & empty() == false) {
 			return "H";

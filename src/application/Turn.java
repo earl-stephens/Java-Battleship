@@ -42,7 +42,7 @@ public class Turn {
 		return playerCoordinate;
 	}
 	
-	private void updatePlayerShot(String playerCoordinate) {
+	public void updatePlayerShot(String playerCoordinate) {
 		computer.board.cells.get(playerCoordinate).fire_upon();
 	}
 	
@@ -67,7 +67,7 @@ public class Turn {
 		System.out.println();
 	}
 	
-	private String playerResult(String playerCoordinate) {
+	public String playerResult(String playerCoordinate) {
 		String output = null;
 		String result = computer.board.cells.get(playerCoordinate).render(false);
 		switch(result) {

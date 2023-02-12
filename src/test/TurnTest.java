@@ -74,4 +74,21 @@ class TurnTest {
 
 		Assert.assertEquals("D2", turn.getPlayerCoordinate());
 	}
+	
+	@Test
+	void testForPlayerResult() {
+		turn.computer.board.cells.get("A1").place_ship(computerCruiser);
+		turn.computer.board.cells.get("B1").place_ship(computerCruiser);
+		turn.computer.board.cells.get("C1").place_ship(computerCruiser);
+		turn.updatePlayerShot("A1");
+		turn.updatePlayerShot("D1");
+		
+		Assert.assertEquals(" was a hit.", turn.playerResult("A1"));
+		Assert.assertEquals(" was a miss.", turn.playerResult("D1"));
+		
+		turn.updatePlayerShot("B1");
+		turn.updatePlayerShot("C1");
+		Assert.assertEquals(" sunk the enemy ship!", turn.playerResult("C1"));
+		
+	}
 }
