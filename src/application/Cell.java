@@ -20,22 +20,20 @@ public class Cell {
 
 	public void fire_upon() {
 		fired_upon = true;
-		if(empty() == false) {
-			ship.hit();
-		}
+		if(!empty()) ship.hit();
 	}
 	
 	public String render(boolean showArgument) {
-		if(fired_upon & empty() == true) {
+		if(fired_upon & empty()) {
 			return "M";
 		}
-		if(fired_upon == false & empty() == false & showArgument) {
+		if(!fired_upon & !empty() & showArgument) {
 			return "S";
 		}
 		if(fired_upon & !empty()) {
 			if(ship.sunk()) return "X";
 		}
-		if(fired_upon & empty() == false) {
+		if(fired_upon & !empty()) {
 			return "H";
 		}
 		return ".";

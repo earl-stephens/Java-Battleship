@@ -69,23 +69,6 @@ public class Game {
 		exit();
 	}
 
-	/*
-	 * public runGame() {
-	 * 		setUpBoards(boolean)
-	 * 		Turn turn = new turn(computer, player)
-	 * 		do{
-	 * 			turn.computerGuess()
-	 * 			turn.playerGuess()
-	 * 		} while (!anyoneLostYet)
-	 * 		
-	 * 		endGame(turn.winner))
-	 * }
-	 * 
-	 * public void endGame(String winner) {
-	 * 		display winner
-	 * 
-	*/
-
 	private void exit() {
 		System.out.println("Thanks for playing.");	
 		scanner.close();

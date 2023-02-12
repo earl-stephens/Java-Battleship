@@ -60,7 +60,6 @@ public class Turn {
 	}
 	
 	public void updatePlayerShot(String playerCoordinate) {
-		System.out.println(playerCoordinate);
 		computer.board.cells.get(playerCoordinate).fire_upon();
 	}
 	
