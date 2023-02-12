@@ -31,7 +31,7 @@ public class Turn {
 		player.board.render(true);
 	}
 	
-	private String getPlayerCoordinate() {
+	public String getPlayerCoordinate() {
 		String playerCoordinate;
 		Scanner scanner = new Scanner(System.in);
 		playerCoordinate = scanner.nextLine();

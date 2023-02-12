@@ -67,4 +67,11 @@ class TurnTest {
 		
 		Assert.assertEquals(expected, actual);
 	}
+	
+	@Test
+	void testForGettingPlayerCoordinate() {
+		System.out.println("Enter D2");
+
+		Assert.assertEquals("D2", turn.getPlayerCoordinate());
+	}
 }
