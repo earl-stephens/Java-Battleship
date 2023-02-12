@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Turn {
@@ -7,6 +8,7 @@ public class Turn {
 	public Computer computer;
 	public String winner;
 	public boolean isThereAWinner = false;
+	private ArrayList<String> coordinateArray = new ArrayList<>();
 	
 	public Turn(Player player, Computer computer) {
 		this.player = player;
@@ -35,11 +37,15 @@ public class Turn {
 		String playerCoordinate;
 		Scanner scanner = new Scanner(System.in);
 		playerCoordinate = scanner.nextLine();
+		coordinateArray.add(playerCoordinate);
+		
 		if(!player.board.valid_coordinate(playerCoordinate)) {
 			System.out.println("Please enter a valid coordinate: ");
 			getPlayerCoordinate();
 		}
-		return playerCoordinate;
+		
+		String last = coordinateArray.get(coordinateArray.size() - 1);
+		return last;
 	}
 	
 	public String getComputerCoordinate() {
@@ -54,6 +60,7 @@ public class Turn {
 	}
 	
 	public void updatePlayerShot(String playerCoordinate) {
+		System.out.println(playerCoordinate);
 		computer.board.cells.get(playerCoordinate).fire_upon();
 	}
 	
