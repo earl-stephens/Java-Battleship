@@ -33,7 +33,7 @@ public class Player {
 		return playerInputArray;
 	}
 	
-	private boolean placeCruiser(Ship ship) {
+	public boolean placeCruiser(Ship ship) {
 		boolean placeIsValid = false;
 		String[] cruiserCoordinates = getCoordinates(ship);
 		
@@ -54,7 +54,7 @@ public class Player {
 		return placeIsValid;
 	}
 	
-	private boolean placeSubmarine(Ship ship) {
+	public boolean placeSubmarine(Ship ship) {
 		boolean placeIsValid = false;
 		String[] submarineCoordinates = getCoordinates(ship);
 		
