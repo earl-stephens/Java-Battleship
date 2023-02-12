@@ -42,10 +42,6 @@ public class Turn {
 		return playerCoordinate;
 	}
 	
-	public void updatePlayerShot(String playerCoordinate) {
-		computer.board.cells.get(playerCoordinate).fire_upon();
-	}
-	
 	public String getComputerCoordinate() {
 		int max = (int)Math.sqrt(computer.board.cells.size());
 		char randomLetter = (char)(Math.random() * ((max + 65) - 65) + 65);
@@ -57,7 +53,11 @@ public class Turn {
 		return letter + number;
 	}
 	
-	private void updateComputerShot(String computerCoordinate) {
+	public void updatePlayerShot(String playerCoordinate) {
+		computer.board.cells.get(playerCoordinate).fire_upon();
+	}
+	
+	public void updateComputerShot(String computerCoordinate) {
 		player.board.cells.get(computerCoordinate).fire_upon();
 	}
 	
@@ -84,7 +84,7 @@ public class Turn {
 		return output;
 	}
 	
-	private String computerResult(String computerCoordinate) {
+	public String computerResult(String computerCoordinate) {
 		String output = null;
 		String result = player.board.cells.get(computerCoordinate).render(false);
 		switch(result) {

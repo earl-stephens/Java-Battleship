@@ -91,4 +91,21 @@ class TurnTest {
 		Assert.assertEquals(" sunk the enemy ship!", turn.playerResult("C1"));
 		
 	}
+	
+	@Test
+	void testForComputerResult() {
+		turn.player.board.cells.get("A1").place_ship(playerCruiser);
+		turn.player.board.cells.get("B1").place_ship(playerCruiser);
+		turn.player.board.cells.get("C1").place_ship(playerCruiser);
+		turn.updateComputerShot("A1");
+		turn.updateComputerShot("D1");
+		
+		Assert.assertEquals(" was a hit.", turn.computerResult("A1"));
+		Assert.assertEquals(" was a miss.", turn.computerResult("D1"));
+		
+		turn.updateComputerShot("B1");
+		turn.updateComputerShot("C1");
+		Assert.assertEquals(" sunk the enemy ship!", turn.computerResult("C1"));
+		
+	}
 }
