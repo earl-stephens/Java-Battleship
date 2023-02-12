@@ -1,7 +1,9 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Turn {
 	public Player player;
@@ -9,6 +11,7 @@ public class Turn {
 	public String winner;
 	public boolean isThereAWinner = false;
 	private ArrayList<String> coordinateArray = new ArrayList<>();
+	private Set<String> firedOnCoordinates = new HashSet<String>();
 	
 	public Turn(Player player, Computer computer) {
 		this.player = player;
@@ -44,7 +47,14 @@ public class Turn {
 			getPlayerCoordinate();
 		}
 		
+		if(firedOnCoordinates.contains(playerCoordinate)) {
+			System.out.println("You have already fired on that coordinate.");
+			System.out.println("Please select another coordinate.");
+			getPlayerCoordinate();
+		}
+		
 		String last = coordinateArray.get(coordinateArray.size() - 1);
+		firedOnCoordinates.add(last);
 		return last;
 	}
 	
