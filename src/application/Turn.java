@@ -68,25 +68,17 @@ public class Turn {
 	}
 	
 	public String playerResult(String playerCoordinate) {
-		String output = null;
 		String result = computer.board.cells.get(playerCoordinate).render(false);
-		switch(result) {
-		case "M":
-			output = " was a miss.";
-			break;
-		case "H":
-			output = " was a hit.";
-			break;
-		case "X":
-			output = " sunk the enemy ship!";
-			break;
-			}
-		return output;
+		return resultDecisionTree(result);
 	}
 	
 	public String computerResult(String computerCoordinate) {
-		String output = null;
 		String result = player.board.cells.get(computerCoordinate).render(false);
+		return resultDecisionTree(result);
+	}
+	
+	private String resultDecisionTree(String result) {
+		String output = null;
 		switch(result) {
 		case "M":
 			output = " was a miss.";
