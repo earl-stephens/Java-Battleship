@@ -1,7 +1,7 @@
 package application;
 
 public class Ship {
-	public String name;
+	private String name;
 	public int length;
 	public int health;
 	public boolean sunk = false;
@@ -12,6 +12,10 @@ public class Ship {
 		this.health = length;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
 	public boolean sunk() {
 		if(health == 0) {
 			sunk = true;

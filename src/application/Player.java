@@ -22,7 +22,7 @@ public class Player {
 	}
 
 	private String[] getCoordinates(Ship ship) {
-		System.out.println("Enter the squares for the " + ship.name + " (" + ship.length + " spaces).");
+		System.out.println("Enter the squares for the " + ship.getName() + " (" + ship.length + " spaces).");
 		System.out.println("Enter the coordinates in the format 'A1 B2 C3'");
 		System.out.println("(one space between coordinates, no commas)");
 		
