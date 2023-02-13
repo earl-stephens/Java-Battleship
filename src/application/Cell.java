@@ -24,16 +24,16 @@ public class Cell {
 	}
 	
 	public String render(boolean showArgument) {
-		if(fired_upon & empty()) {
+		if(fired_upon && empty()) {
 			return "M";
 		}
-		if(!fired_upon & !empty() & showArgument) {
+		if(!fired_upon && !empty() && showArgument) {
 			return "S";
 		}
-		if(fired_upon & !empty()) {
+		if(fired_upon && !empty()) {
 			if(ship.sunk()) return "X";
 		}
-		if(fired_upon & !empty()) {
+		if(fired_upon && !empty()) {
 			return "H";
 		}
 		return ".";

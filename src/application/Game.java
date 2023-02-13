@@ -26,10 +26,8 @@ public class Game {
 	public String mainMenu() {
 		System.out.println("Welcome to Battleship");
 		System.out.println("Enter p to play.  Enter q to quit.");
-		
-		String output = scanner.nextLine();
 	
-		return output;
+		return scanner.nextLine();
 	}
 	
 	public void runGame() {

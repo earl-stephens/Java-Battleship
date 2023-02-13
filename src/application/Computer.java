@@ -1,8 +1,8 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Computer {
 	public Board board;
@@ -50,7 +50,7 @@ public class Computer {
 		//Which row or column will the ship be in
 		String startRowOrColumn = pickWhichRowOrColumn(ship.length);
 		
-		if(rowOrColumn == "C") {
+		if(rowOrColumn.equals("C")) {
 			//Where in the column is the first coordinate
 			columnStart = pickColumnStartingPoint(ship.length);
 			return buildCoordinateArrayWithColumn(startRowOrColumn,columnStart, ship.length);
@@ -71,7 +71,8 @@ public class Computer {
 	}
 	
 	public String pickWhichRowOrColumn(int size) {
-		int max = (int)Math.sqrt(board.cells.size()) - size;
+		HashMap<String, Cell> cells = board.getCells();
+		int max = (int)Math.sqrt(cells.size()) - size;
 		int randomNum = (int)((Math.random() * max) +1);
 		return String.valueOf(randomNum);
 	}
@@ -82,7 +83,8 @@ public class Computer {
 	}
 	
 	public String pickColumnStartingPoint(int size) {
-		int max = (int)Math.sqrt(board.cells.size()) - size;
+		HashMap<String, Cell> cells = board.getCells();
+		int max = (int)Math.sqrt(cells.size()) - size;
 		char randomNum = (char)(Math.random() * ((max + 65) - 65) + 65);
 		return String.valueOf(randomNum);
 	}

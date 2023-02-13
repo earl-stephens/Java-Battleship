@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -11,12 +12,13 @@ public class Turn {
 	public String winner;
 	public boolean isThereAWinner = false;
 	private ArrayList<String> coordinateArray = new ArrayList<>();
-	private Set<String> firedOnCoordinates = new HashSet<String>();
+	private Set<String> firedOnCoordinates = new HashSet<>();
 	
 	public Turn(Player player, Computer computer) {
 		this.player = player;
 		this.computer = computer;
 	}
+	
 	
 	public void takeTurn() {
 		displayBoards();
@@ -59,7 +61,8 @@ public class Turn {
 	}
 	
 	public String getComputerCoordinate() {
-		int max = (int)Math.sqrt(computer.board.cells.size());
+		HashMap<String, Cell> computerCells = computer.board.getCells();
+		int max = (int)Math.sqrt(computerCells.size());
 		char randomLetter = (char)(Math.random() * ((max + 65) - 65) + 65);
 		String letter = String.valueOf(randomLetter);
 
@@ -70,11 +73,13 @@ public class Turn {
 	}
 	
 	public void updatePlayerShot(String playerCoordinate) {
-		computer.board.cells.get(playerCoordinate).fire_upon();
+		HashMap<String, Cell> computerCells = computer.board.getCells();
+		computerCells.get(playerCoordinate).fire_upon();
 	}
 	
 	public void updateComputerShot(String computerCoordinate) {
-		player.board.cells.get(computerCoordinate).fire_upon();
+		HashMap<String, Cell> playerCells = player.board.getCells();
+		playerCells.get(computerCoordinate).fire_upon();
 	}
 	
 	private void displayTurnResults(String playerCoordinate, String computerCoordinate) {
@@ -84,12 +89,14 @@ public class Turn {
 	}
 	
 	public String playerResult(String playerCoordinate) {
-		String result = computer.board.cells.get(playerCoordinate).render(false);
+		HashMap<String, Cell> computerCells = computer.board.getCells();
+		String result = computerCells.get(playerCoordinate).render(false);
 		return resultDecisionTree(result);
 	}
 	
 	public String computerResult(String computerCoordinate) {
-		String result = player.board.cells.get(computerCoordinate).render(false);
+		HashMap<String, Cell> playerCells = player.board.getCells();
+		String result = playerCells.get(computerCoordinate).render(false);
 		return resultDecisionTree(result);
 	}
 	
@@ -112,13 +119,13 @@ public class Turn {
 	private void checkForWinner() {
 		player.cruiser.sunk();
 		player.submarine.sunk();
-		if(player.cruiser.sunk & player.submarine.sunk) {
+		if(player.cruiser.sunk && player.submarine.sunk) {
 			isThereAWinner = true;
 			winner = "Computer";
 		}
 		computer.ship1.sunk();
 		computer.ship2.sunk();
-		if(computer.ship1.sunk & computer.ship2.sunk) {
+		if(computer.ship1.sunk && computer.ship2.sunk) {
 			isThereAWinner = true;
 			winner = "Player";
 		}

@@ -28,9 +28,7 @@ public class Player {
 		
 		Scanner scanner = new Scanner(System.in);
 		String playerInput = scanner.nextLine();
-		String[] playerInputArray = playerInput.split(" ");
-		
-		return playerInputArray;
+		return playerInput.split(" ");
 	}
 	
 	public boolean placeCruiser(Ship ship) {
