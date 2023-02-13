@@ -7,8 +7,8 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Turn {
-	public Player player;
-	public Computer computer;
+	private Player player;
+	private Computer computer;
 	public String winner;
 	public boolean isThereAWinner = false;
 	private ArrayList<String> coordinateArray = new ArrayList<>();
@@ -19,6 +19,13 @@ public class Turn {
 		this.computer = computer;
 	}
 	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public Computer getComputer() {
+		return computer;
+	}
 	
 	public void takeTurn() {
 		displayBoards();

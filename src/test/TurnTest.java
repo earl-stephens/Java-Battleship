@@ -19,8 +19,10 @@ class TurnTest {
 	Computer computer = new Computer(computerCruiser, computerSubmarine);
 	Player player = new Player("John Doe", playerCruiser, playerSubmarine);
 	Turn turn = new Turn(player, computer);
-	HashMap<String, Cell> cells = turn.computer.board.getCells();
-	HashMap<String, Cell> playerCells = turn.player.board.getCells();
+	Player turnPlayer = turn.getPlayer();
+	Computer turnComputer = turn.getComputer();
+	HashMap<String, Cell> cells = turnComputer.board.getCells();
+	HashMap<String, Cell> playerCells = turnPlayer.board.getCells();
 	
 	@Test
 	void testTurnExists() {

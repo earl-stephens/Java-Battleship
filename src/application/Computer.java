@@ -3,6 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Computer {
 	public Board board;
@@ -19,6 +20,9 @@ public class Computer {
 	
 	public void placeShip(Ship ship) {
 		String[] coordinates = generateCoordinates(ship);
+		for(String coords : coordinates) {
+			System.out.println(coords);
+		}
 		Collections.addAll(coordinateArray, coordinates);
 		boolean placeIsValid = false;
 		
@@ -73,12 +77,12 @@ public class Computer {
 	public String pickWhichRowOrColumn(int size) {
 		HashMap<String, Cell> cells = board.getCells();
 		int max = (int)Math.sqrt(cells.size()) - size;
-		int randomNum = (int)((Math.random() * max) +1);
+		int randomNum = (int)((Math.random() * max) + 1);
 		return String.valueOf(randomNum);
 	}
 	
 	public String pickRowStartingPoint(int size) {
-		int randomNum = (int)((Math.random() * (size -1)) + 1);
+		int randomNum = (int)((Math.random() * (size - 1)) + 1);
 		return String.valueOf(randomNum);
 	}
 	

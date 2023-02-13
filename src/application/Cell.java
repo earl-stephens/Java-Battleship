@@ -1,12 +1,10 @@
 package application;
 
 public class Cell {
-	private String coordinate;
 	public Ship ship = null;
 	private boolean fired_upon = false;
 	
 	public Cell(String coordinate) {
-		this.coordinate = coordinate;
 	}
 	
 	public boolean getFiredUpon() {
