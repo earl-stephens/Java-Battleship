@@ -34,8 +34,8 @@ class CellTest {
 	@Test
 	void testFiredUponAttribute() {
 		cell.place_ship(cruiser);
-		
-		Assert.assertFalse(cell.fired_upon);
+		boolean actual = cell.getFiredUpon();
+		Assert.assertFalse(actual);
 	}
 	
 	@Test
@@ -43,9 +43,10 @@ class CellTest {
 		cell.place_ship(cruiser);
 		
 		cell.fire_upon();
+		boolean actual = cell.getFiredUpon();
 		
 		Assert.assertEquals(2, cell.ship.health);
-		Assert.assertTrue(cell.fired_upon);
+		Assert.assertTrue(actual);
 	}
 	
 	@Test
