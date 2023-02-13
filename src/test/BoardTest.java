@@ -1,16 +1,14 @@
 package test;
 import application.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Arrays;
+import java.util.HashMap;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 class BoardTest {
-	public Board board = new Board();
-	
+	private Board board = new Board();
+	Ship cruiser = new Ship("Cruiser", 3);	
 	
 	/* NOTE:
 	 * There are many tests here that are commented out.  These tests were used to develop
@@ -49,7 +47,6 @@ class BoardTest {
 	*/
 	@Test
 	void testForValidPlacement() {
-		Ship cruiser = new Ship("Cruiser", 3);
 		Ship submarine = new Ship("Submarine", 2);
 		Ship destroyer = new Ship("Destroyer", 3);
 		Ship carrier = new Ship("Carrier", 3);
@@ -87,18 +84,17 @@ class BoardTest {
 	
 	@Test
 	void testPlacingAShip() {
-		Ship cruiser = new Ship("Cruiser", 3);
 		String[] cruiserCoord = {"B2", "B3", "B4"};
 		board.place(cruiser, cruiserCoord);
+		HashMap<String, Cell> cells = board.getCells();
 		
-		Assert.assertEquals(board.cells.get("B2").ship, board.cells.get("B3").ship);
-		Assert.assertEquals(board.cells.get("B4").ship, board.cells.get("B3").ship);
-		Assert.assertEquals(board.cells.get("B2").ship, board.cells.get("B4").ship);
+		Assert.assertEquals(cells.get("B2").ship, cells.get("B3").ship);
+		Assert.assertEquals(cells.get("B4").ship, cells.get("B3").ship);
+		Assert.assertEquals(cells.get("B2").ship, cells.get("B4").ship);
 	}
 	
 	@Test
 	void testForOverlappingShips() {
-		Ship cruiser = new Ship("Cruiser", 3);
 		Ship submarine = new Ship("Submarine", 2);
 		Ship destroyer = new Ship("Destroyer", 3);
 		String[] cruiserCoord = {"A1", "A2", "A3"};

@@ -1,11 +1,10 @@
 package test;
 import application.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Assert;
@@ -20,6 +19,10 @@ class TurnTest {
 	Computer computer = new Computer(computerCruiser, computerSubmarine);
 	Player player = new Player("John Doe", playerCruiser, playerSubmarine);
 	Turn turn = new Turn(player, computer);
+	Player turnPlayer = turn.getPlayer();
+	Computer turnComputer = turn.getComputer();
+	HashMap<String, Cell> cells = turnComputer.board.getCells();
+	HashMap<String, Cell> playerCells = turnPlayer.board.getCells();
 	
 	@Test
 	void testTurnExists() {
@@ -29,7 +32,7 @@ class TurnTest {
 	@RepeatedTest(5)
 	void testForGettingComputerCoordinate() {
 		String output = turn.getComputerCoordinate();
-		List<String> expected = new ArrayList<String>();
+		List<String> expected = new ArrayList<>();
 		expected.add("A1");
 		expected.add("A2");
 		expected.add("A3");
@@ -77,9 +80,9 @@ class TurnTest {
 	
 	@Test
 	void testForPlayerResult() {
-		turn.computer.board.cells.get("A1").place_ship(computerCruiser);
-		turn.computer.board.cells.get("B1").place_ship(computerCruiser);
-		turn.computer.board.cells.get("C1").place_ship(computerCruiser);
+		cells.get("A1").place_ship(computerCruiser);
+		cells.get("B1").place_ship(computerCruiser);
+		cells.get("C1").place_ship(computerCruiser);
 		turn.updatePlayerShot("A1");
 		turn.updatePlayerShot("D1");
 		
@@ -94,9 +97,9 @@ class TurnTest {
 	
 	@Test
 	void testForComputerResult() {
-		turn.player.board.cells.get("A1").place_ship(playerCruiser);
-		turn.player.board.cells.get("B1").place_ship(playerCruiser);
-		turn.player.board.cells.get("C1").place_ship(playerCruiser);
+		playerCells.get("A1").place_ship(playerCruiser);
+		playerCells.get("B1").place_ship(playerCruiser);
+		playerCells.get("C1").place_ship(playerCruiser);
 		turn.updateComputerShot("A1");
 		turn.updateComputerShot("D1");
 		

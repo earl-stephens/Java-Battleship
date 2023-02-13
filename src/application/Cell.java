@@ -1,12 +1,14 @@
 package application;
 
 public class Cell {
-	public String coordinate;
 	public Ship ship = null;
-	public boolean fired_upon = false;
+	private boolean fired_upon = false;
 	
 	public Cell(String coordinate) {
-		this.coordinate = coordinate;
+	}
+	
+	public boolean getFiredUpon() {
+		return fired_upon;
 	}
 	
 	public boolean empty() {
@@ -24,16 +26,16 @@ public class Cell {
 	}
 	
 	public String render(boolean showArgument) {
-		if(fired_upon & empty()) {
+		if(fired_upon && empty()) {
 			return "M";
 		}
-		if(!fired_upon & !empty() & showArgument) {
+		if(!fired_upon && !empty() && showArgument) {
 			return "S";
 		}
-		if(fired_upon & !empty()) {
+		if(fired_upon && !empty()) {
 			if(ship.sunk()) return "X";
 		}
-		if(fired_upon & !empty()) {
+		if(fired_upon && !empty()) {
 			return "H";
 		}
 		return ".";

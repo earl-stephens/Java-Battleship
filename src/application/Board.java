@@ -4,8 +4,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Board {
-	public HashMap<String, Cell> cells = new HashMap<String, Cell>();
+	private HashMap<String, Cell> cells = new HashMap<>();
 	
+	public HashMap<String, Cell> getCells() {
+		return cells;
+	}
+
 	public Board() {
 		cells.put("A1", new Cell("A1"));
 		cells.put("A2", new Cell("A2"));
@@ -37,10 +41,10 @@ public class Board {
 	
 	public boolean valid_placement(Ship ship, String[] coordinates) {
 		boolean length = validateLength(ship, coordinates);
-		boolean consecutive = validateConsecutive(ship, coordinates);
+		boolean consecutive = validateConsecutive(coordinates);
 		boolean overlap	= noOverlap(ship, coordinates);
 		
-		if(length & consecutive & overlap) return true;
+		if(length && consecutive && overlap) return true;
 		return false;
 	}
 	
@@ -49,20 +53,20 @@ public class Board {
 		return false;		
 	}
 	
-	private boolean validateConsecutive(Ship ship, String[] coordinates) {
-		boolean numCheck = isConsecutive(getNumberArray(ship, coordinates));
-		boolean nonConsecutiveNumbersTheSame = isAllTheSame(getNumberArray(ship, coordinates));
-		boolean letterCheck = isConsecutive(charToIntArray(ship, coordinates));
-		boolean nonConsecutiveLettersTheSame = isAllTheSame(charToIntArray(ship,coordinates));
-		if(letterCheck & !numCheck & nonConsecutiveNumbersTheSame) {
+	private boolean validateConsecutive(String[] coordinates) {
+		boolean numCheck = isConsecutive(getNumberArray(coordinates));
+		boolean nonConsecutiveNumbersTheSame = isAllTheSame(getNumberArray(coordinates));
+		boolean letterCheck = isConsecutive(charToIntArray(coordinates));
+		boolean nonConsecutiveLettersTheSame = isAllTheSame(charToIntArray(coordinates));
+		if(letterCheck && !numCheck && nonConsecutiveNumbersTheSame) {
 			return true;
-		} else if(numCheck & !letterCheck & nonConsecutiveLettersTheSame) {
+		} else if(numCheck && !letterCheck && nonConsecutiveLettersTheSame) {
 			return true;
 		} else
 			return false;
 	}
 	
-	private String[] getLetterArray(Ship ship, String[] coordinates) {
+	private String[] getLetterArray(String[] coordinates) {
 		String[] letterArray = new String[coordinates.length];
 		for(int i = 0; i < coordinates.length; i++) {
 			letterArray[i] = coordinates[i].split("")[0];
@@ -70,7 +74,7 @@ public class Board {
 		return letterArray;
 	}
 	
-	private int[] getNumberArray(Ship ship, String[] coordinates) {
+	private int[] getNumberArray(String[] coordinates) {
 		int[] numberArray = new int[coordinates.length];
 		for(int i = 0; i < coordinates.length; i++) {
 			numberArray[i] = Integer.valueOf(coordinates[i].split("")[1]);
@@ -78,8 +82,8 @@ public class Board {
 		return numberArray;
 	}
 	
-	private char[] stringToCharArray(Ship ship, String[] coordinates) {
-		String[] letterArray = getLetterArray(ship, coordinates);
+	private char[] stringToCharArray(String[] coordinates) {
+		String[] letterArray = getLetterArray(coordinates);
 		char[] charArray = new char[letterArray.length];
 		for(int i = 0; i < letterArray.length; i++) {
 			String letter = letterArray[i];
@@ -88,11 +92,11 @@ public class Board {
 		return charArray;
 	}
 	
-	private int[] charToIntArray(Ship ship, String[] coordinates) {
-		char[] charArray = stringToCharArray(ship, coordinates);
+	private int[] charToIntArray(String[] coordinates) {
+		char[] charArray = stringToCharArray(coordinates);
 		int[] unicodeNumberArray = new int[charArray.length];
 		for(int i = 0; i < charArray.length; i++) {
-			unicodeNumberArray[i] = (int)charArray[i];
+			unicodeNumberArray[i] = charArray[i];
 		}
 		return unicodeNumberArray;
 	}
@@ -100,9 +104,7 @@ public class Board {
 	private boolean isConsecutive(int[] testArray) {
 		int min = Arrays.stream(testArray).min().getAsInt();
 		int max = Arrays.stream(testArray).max().getAsInt();
-		if((max - min) + 1 == testArray.length) {
-			return true;
-		}
+		if((max - min) + 1 == testArray.length) return true;
 		return false;
 	}
 	
@@ -110,7 +112,7 @@ public class Board {
 		boolean status = true;
 		for(int i = 0; i < coordinates.length; i++) {
 			Cell cell = cells.get(coordinates[i]);
-			if(!cell.empty() & (cell.ship != ship)) {
+			if(!cell.empty() && (cell.ship != ship)) {
 				status = false;
 			}
 		}

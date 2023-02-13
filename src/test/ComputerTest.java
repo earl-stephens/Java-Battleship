@@ -1,9 +1,8 @@
 package test;
 import application.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Assert;
@@ -18,13 +17,13 @@ class ComputerTest {
 	@Test
 	void testForComputerObject() {
 		
-		Assert.assertNotNull(computer);;
+		Assert.assertNotNull(computer);
 	}
 	
 	@Test
 	void testForHavingABoard() {
-		
-		Assert.assertNotNull(computer.board.cells);
+		HashMap<String, Cell> cells = computer.board.getCells();
+		Assert.assertNotNull(cells);
 	}
 	
 	@Test
@@ -51,7 +50,7 @@ class ComputerTest {
 	void testForPickingWhichRowOrColumn() {
 		Ship cruiser = new Ship("Cruiser", 3);
 		String output = computer.pickWhichRowOrColumn(cruiser.length);
-		List<String> expected = new ArrayList<String>();
+		List<String> expected = new ArrayList<>();
 		expected.add("1");
 		expected.add("2");
 		expected.add("3");
@@ -64,7 +63,7 @@ class ComputerTest {
 	@RepeatedTest(5)
 	void testForPickingRowStartingPoint() {
 		String output = computer.pickRowStartingPoint(3);
-		List<String> expected = new ArrayList<String>();
+		List<String> expected = new ArrayList<>();
 		expected.add("1");
 		expected.add("2");
 		expected.add("3");
@@ -81,7 +80,7 @@ class ComputerTest {
 	@RepeatedTest(5)
 	void testForPickingColumnStartingPoint() {
 		String output = computer.pickColumnStartingPoint(3);
-		List<String> expected = new ArrayList<String>();
+		List<String> expected = new ArrayList<>();
 		expected.add("A");
 		expected.add("B");
 		expected.add("C");

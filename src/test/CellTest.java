@@ -1,13 +1,12 @@
 package test;
 import application.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 class CellTest {
 	Cell cell = new Cell("B4");
+	Ship cruiser = new Ship("Cruiser", 3);
 	
 	@Test
 	void testForCellObject() {
@@ -26,7 +25,6 @@ class CellTest {
 	
 	@Test
 	void testPlaceShipMethod() {
-		Ship cruiser = new Ship("Cruiser", 3);
 		cell.place_ship(cruiser);
 		
 		Assert.assertEquals(3, cell.ship.health);
@@ -35,21 +33,20 @@ class CellTest {
 	
 	@Test
 	void testFiredUponAttribute() {
-		Ship cruiser = new Ship("Cruiser", 3);
 		cell.place_ship(cruiser);
-		
-		Assert.assertFalse(cell.fired_upon);
+		boolean actual = cell.getFiredUpon();
+		Assert.assertFalse(actual);
 	}
 	
 	@Test
 	void testFireUponMethod() {
-		Ship cruiser = new Ship("Cruiser", 3);
 		cell.place_ship(cruiser);
 		
 		cell.fire_upon();
+		boolean actual = cell.getFiredUpon();
 		
 		Assert.assertEquals(2, cell.ship.health);
-		Assert.assertTrue(cell.fired_upon);
+		Assert.assertTrue(actual);
 	}
 	
 	@Test
@@ -63,7 +60,6 @@ class CellTest {
 	
 	@Test
 	void testRenderForAPopulatedCell() {
-		Ship cruiser = new Ship("Cruiser", 3);
 		cell.place_ship(cruiser);
 		
 		Assert.assertEquals("S", cell.render(true));
